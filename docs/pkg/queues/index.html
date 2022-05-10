@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>queues - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.13.15";</script>
+<script src="../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../index.html">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../index.html">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package queues
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "queues"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#CallbackMessageReceiver">type CallbackMessageReceiver</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCallbackMessageReceiver">func NewCallbackMessageReceiver(callback func(message *MessageEnvelope, queue IMessageQueue) error) *CallbackMessageReceiver</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CallbackMessageReceiver.ReceiveMessage">func (c *CallbackMessageReceiver) ReceiveMessage(message *MessageEnvelope, queue IMessageQueue) (err error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#IMessageQueue">type IMessageQueue</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#IMessageQueueOverrides">type IMessageQueueOverrides</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#IMessageReceiver">type IMessageReceiver</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#LockedMessage">type LockedMessage</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#MemoryMessageQueue">type MemoryMessageQueue</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewMemoryMessageQueue">func NewMemoryMessageQueue(name string) *MemoryMessageQueue</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryMessageQueue.Abandon">func (c *MemoryMessageQueue) Abandon(message *MessageEnvelope) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryMessageQueue.Clear">func (c *MemoryMessageQueue) Clear(correlationId string) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryMessageQueue.Close">func (c *MemoryMessageQueue) Close(correlationId string) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryMessageQueue.Complete">func (c *MemoryMessageQueue) Complete(message *MessageEnvelope) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryMessageQueue.EndListen">func (c *MemoryMessageQueue) EndListen(correlationId string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryMessageQueue.IsOpen">func (c *MemoryMessageQueue) IsOpen() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryMessageQueue.Listen">func (c *MemoryMessageQueue) Listen(correlationId string, receiver IMessageReceiver) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryMessageQueue.MoveToDeadLetter">func (c *MemoryMessageQueue) MoveToDeadLetter(message *MessageEnvelope) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryMessageQueue.OpenWithParams">func (c *MemoryMessageQueue) OpenWithParams(correlationId string, connections []*ccon.ConnectionParams, credential *auth.CredentialParams) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryMessageQueue.Peek">func (c *MemoryMessageQueue) Peek(correlationId string) (result *MessageEnvelope, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryMessageQueue.PeekBatch">func (c *MemoryMessageQueue) PeekBatch(correlationId string, messageCount int64) (result []*MessageEnvelope, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryMessageQueue.ReadMessageCount">func (c *MemoryMessageQueue) ReadMessageCount() (count int64, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryMessageQueue.Receive">func (c *MemoryMessageQueue) Receive(correlationId string, waitTimeout time.Duration) (*MessageEnvelope, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryMessageQueue.RenewLock">func (c *MemoryMessageQueue) RenewLock(message *MessageEnvelope, lockTimeout time.Duration) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryMessageQueue.Send">func (c *MemoryMessageQueue) Send(correlationId string, envelope *MessageEnvelope) (err error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#MessageEnvelope">type MessageEnvelope</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewEmptyMessageEnvelope">func NewEmptyMessageEnvelope() *MessageEnvelope</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewMessageEnvelope">func NewMessageEnvelope(correlationId string, messageType string, message []byte) *MessageEnvelope</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessageEnvelope.GetMessageAsJson">func (c *MessageEnvelope) GetMessageAsJson() interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessageEnvelope.GetMessageAsString">func (c *MessageEnvelope) GetMessageAsString() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessageEnvelope.GetReference">func (c *MessageEnvelope) GetReference() interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessageEnvelope.MarshalJSON">func (c *MessageEnvelope) MarshalJSON() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessageEnvelope.SetMessageAsJson">func (c *MessageEnvelope) SetMessageAsJson(value interface{})</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessageEnvelope.SetMessageAsString">func (c *MessageEnvelope) SetMessageAsString(value string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessageEnvelope.SetReference">func (c *MessageEnvelope) SetReference(value interface{})</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessageEnvelope.String">func (c *MessageEnvelope) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessageEnvelope.UnmarshalJSON">func (c *MessageEnvelope) UnmarshalJSON(data []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#MessageQueue">type MessageQueue</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#InheritMessageQueue">func InheritMessageQueue(overrides IMessageQueueOverrides, name string, capabilities *MessagingCapabilities) *MessageQueue</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessageQueue.BeginListen">func (c *MessageQueue) BeginListen(correlationId string, receiver IMessageReceiver)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessageQueue.Capabilities">func (c *MessageQueue) Capabilities() *MessagingCapabilities</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessageQueue.CheckOpen">func (c *MessageQueue) CheckOpen(correlationId string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessageQueue.Configure">func (c *MessageQueue) Configure(config *cconf.ConfigParams)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessageQueue.Name">func (c *MessageQueue) Name() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessageQueue.Open">func (c *MessageQueue) Open(correlationId string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessageQueue.OpenWithParams">func (c *MessageQueue) OpenWithParams(correlationId string, connections []*cconn.ConnectionParams, credential *cauth.CredentialParams) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessageQueue.SendAsObject">func (c *MessageQueue) SendAsObject(correlationId string, messageType string, message interface{}) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessageQueue.SetReferences">func (c *MessageQueue) SetReferences(references cref.IReferences)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessageQueue.String">func (c *MessageQueue) String() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#MessagingCapabilities">type MessagingCapabilities</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewMessagingCapabilities">func NewMessagingCapabilities(canMessageCount bool, canSend bool, canReceive bool, canPeek bool, canPeekBatch bool, canRenewLock bool, canAbandon bool, canDeadLetter bool, canClear bool) *MessagingCapabilities</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessagingCapabilities.CanAbandon">func (c *MessagingCapabilities) CanAbandon() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessagingCapabilities.CanClear">func (c *MessagingCapabilities) CanClear() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessagingCapabilities.CanDeadLetter">func (c *MessagingCapabilities) CanDeadLetter() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessagingCapabilities.CanMessageCount">func (c *MessagingCapabilities) CanMessageCount() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessagingCapabilities.CanPeek">func (c *MessagingCapabilities) CanPeek() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessagingCapabilities.CanPeekBatch">func (c *MessagingCapabilities) CanPeekBatch() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessagingCapabilities.CanReceive">func (c *MessagingCapabilities) CanReceive() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessagingCapabilities.CanRenewLock">func (c *MessagingCapabilities) CanRenewLock() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessagingCapabilities.CanSend">func (c *MessagingCapabilities) CanSend() bool</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/queues/CallbackMessageReceiver.go">CallbackMessageReceiver.go</a>
+			
+				<a href="http://localhost:6060/src/queues/IMessageQueue.go">IMessageQueue.go</a>
+			
+				<a href="http://localhost:6060/src/queues/IMessageReceiver.go">IMessageReceiver.go</a>
+			
+				<a href="http://localhost:6060/src/queues/LockedMessage.go">LockedMessage.go</a>
+			
+				<a href="http://localhost:6060/src/queues/MemoryMessageQueue.go">MemoryMessageQueue.go</a>
+			
+				<a href="http://localhost:6060/src/queues/MessageEnvelope.go">MessageEnvelope.go</a>
+			
+				<a href="http://localhost:6060/src/queues/MessageQueue.go">MessageQueue.go</a>
+			
+				<a href="http://localhost:6060/src/queues/MessagingCapabilities.go">MessagingCapabilities.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="CallbackMessageReceiver">type <a href="http://localhost:6060/src/queues/CallbackMessageReceiver.go?s=97:204#L1">CallbackMessageReceiver</a>
+				<a class="permalink" href="index.html#CallbackMessageReceiver">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+CallbackMessageReceiver allows to wrap message callback into IMessageReceiver
+</p>
+
+			<pre>type CallbackMessageReceiver struct {
+<span id="CallbackMessageReceiver.Callback"></span>    Callback func(message *<a href="index.html#MessageEnvelope">MessageEnvelope</a>, queue <a href="index.html#IMessageQueue">IMessageQueue</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCallbackMessageReceiver">func <a href="http://localhost:6060/src/queues/CallbackMessageReceiver.go?s=206:330#L1">NewCallbackMessageReceiver</a>
+					<a class="permalink" href="index.html#NewCallbackMessageReceiver">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCallbackMessageReceiver(callback func(message *<a href="index.html#MessageEnvelope">MessageEnvelope</a>, queue <a href="index.html#IMessageQueue">IMessageQueue</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>) *<a href="index.html#CallbackMessageReceiver">CallbackMessageReceiver</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="CallbackMessageReceiver.ReceiveMessage">func (*CallbackMessageReceiver) <a href="http://localhost:6060/src/queues/CallbackMessageReceiver.go?s=403:510#L5">ReceiveMessage</a>
+					<a class="permalink" href="index.html#CallbackMessageReceiver.ReceiveMessage">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CallbackMessageReceiver">CallbackMessageReceiver</a>) ReceiveMessage(message *<a href="index.html#MessageEnvelope">MessageEnvelope</a>, queue <a href="index.html#IMessageQueue">IMessageQueue</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="IMessageQueue">type <a href="http://localhost:6060/src/queues/IMessageQueue.go?s=430:5247#L7">IMessageQueue</a>
+				<a class="permalink" href="index.html#IMessageQueue">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+IMessageQueue Interface for asynchronous message queues.
+</p>
+<p>
+Not all queues may implement all the methods.
+Attempt to call non-supported method will result in NotImplemented exception.
+To verify if specific method is supported consult with MessagingCapabilities.
+</p>
+<p>
+See MessageEnvelop
+See MessagingCapabilities
+</p>
+
+			<pre>type IMessageQueue interface {
+    <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-go/run/">crun</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-go/run/#IOpenable">IOpenable</a>
+
+    <span class="comment">// Name are gets the queue name</span>
+    <span class="comment">// Return the queue name.</span>
+    Name() <a href="http://localhost:6060/pkg/builtin/#string">string</a>
+
+    <span class="comment">// Capabilities method are gets the queue capabilities</span>
+    <span class="comment">// Return the queue&#39;s capabilities object.</span>
+    Capabilities() *<a href="index.html#MessagingCapabilities">MessagingCapabilities</a>
+
+    <span class="comment">// ReadMessageCount method are reads the current number of messages in the queue to be delivered.</span>
+    <span class="comment">// Returns number of messages or error.</span>
+    ReadMessageCount() (count <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Send method are sends a message into the queue.</span>
+    <span class="comment">//  - correlationId     (optional) transaction id to trace execution through call chain.</span>
+    <span class="comment">//  - envelope          a message envelop to be sent.</span>
+    <span class="comment">// Returns: error or nil for success.</span>
+    Send(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, envelope *<a href="index.html#MessageEnvelope">MessageEnvelope</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
+
+    <span class="comment">// SendAsObject method are sends an object into the queue.</span>
+    <span class="comment">// Before sending the object is converted into JSON string and wrapped in a MessageEnvelop.</span>
+    <span class="comment">//  - correlationId     (optional) transaction id to trace execution through call chain.</span>
+    <span class="comment">//  - messageType       a message type</span>
+    <span class="comment">//  - value             an object value to be sent</span>
+    <span class="comment">// Returns: error or nil for success.</span>
+    <span class="comment">// See Send</span>
+    SendAsObject(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, messageType <a href="http://localhost:6060/pkg/builtin/#string">string</a>, value interface{}) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
+
+    <span class="comment">// Peek method are peeks a single incoming message from the queue without removing it.</span>
+    <span class="comment">// If there are no messages available in the queue it returns nil.</span>
+    <span class="comment">//  - correlationId     (optional) transaction id to trace execution through call chain.</span>
+    <span class="comment">// Returns: received message or error.</span>
+    Peek(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (result *<a href="index.html#MessageEnvelope">MessageEnvelope</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// PeekBatch method are peeks multiple incoming messages from the queue without removing them.</span>
+    <span class="comment">// If there are no messages available in the queue it returns an empty list.</span>
+    <span class="comment">//   - correlationId     (optional) transaction id to trace execution through call chain.</span>
+    <span class="comment">//   - messageCount      a maximum number of messages to peek.</span>
+    <span class="comment">// Returns:            list with messages or error.</span>
+    PeekBatch(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, messageCount <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>) (result []*<a href="index.html#MessageEnvelope">MessageEnvelope</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Receive method are receives an incoming message and removes it from the queue.</span>
+    <span class="comment">//   - correlationId     (optional) transaction id to trace execution through call chain.</span>
+    <span class="comment">//   - waitTimeout       a timeout in milliseconds to wait for a message to come.</span>
+    <span class="comment">// Returns: a message or error.</span>
+    Receive(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, waitTimeout <a href="http://localhost:6060/pkg/time/">time</a>.<a href="http://localhost:6060/pkg/time/#Duration">Duration</a>) (result *<a href="index.html#MessageEnvelope">MessageEnvelope</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// RenewLock methodd are renews a lock on a message that makes it invisible from other receivers in the queue.</span>
+    <span class="comment">// This method is usually used to extend the message processing time.</span>
+    <span class="comment">//   - message       a message to extend its lock.</span>
+    <span class="comment">//   - lockTimeout   a locking timeout in milliseconds.</span>
+    <span class="comment">// Returns:      error or nil for success.</span>
+    RenewLock(message *<a href="index.html#MessageEnvelope">MessageEnvelope</a>, lockTimeout <a href="http://localhost:6060/pkg/time/">time</a>.<a href="http://localhost:6060/pkg/time/#Duration">Duration</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
+
+    <span class="comment">// Complete method are permanently removes a message from the queue.</span>
+    <span class="comment">// This method is usually used to remove the message after successful processing.</span>
+    <span class="comment">//   - message   a message to remove.</span>
+    <span class="comment">// Returns: error or nil for success.</span>
+    Complete(message *<a href="index.html#MessageEnvelope">MessageEnvelope</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
+
+    <span class="comment">// Abandon method are returnes message into the queue and makes it available for all subscribers to receive it again.</span>
+    <span class="comment">// This method is usually used to return a message which could not be processed at the moment</span>
+    <span class="comment">// to repeat the attempt. Messages that cause unrecoverable errors shall be removed permanently</span>
+    <span class="comment">// or/and send to dead letter queue.</span>
+    <span class="comment">//   - message   a message to return.</span>
+    <span class="comment">// Retruns: error or nil for success.</span>
+    Abandon(message *<a href="index.html#MessageEnvelope">MessageEnvelope</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
+
+    <span class="comment">// MoveToDeadLetter method are permanently removes a message from the queue and sends it to dead letter queue.</span>
+    <span class="comment">//   - message   a message to be removed.</span>
+    <span class="comment">// Results: error or nil for success.</span>
+    MoveToDeadLetter(message *<a href="index.html#MessageEnvelope">MessageEnvelope</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
+
+    <span class="comment">// Listen method are listens for incoming messages and blocks the current thread until queue is closed.</span>
+    <span class="comment">//   - correlationId     (optional) transaction id to trace execution through call chain.</span>
+    <span class="comment">//   - receiver          a receiver to receive incoming messages.</span>
+    <span class="comment">// See IMessageReceiver</span>
+    <span class="comment">// See receive</span>
+    Listen(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, receiver <a href="index.html#IMessageReceiver">IMessageReceiver</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
+
+    <span class="comment">// BeginListen method are listens for incoming messages without blocking the current thread.</span>
+    <span class="comment">//   - correlationId     (optional) transaction id to trace execution through call chain.</span>
+    <span class="comment">//   - receiver          a receiver to receive incoming messages.</span>
+    <span class="comment">// See listen</span>
+    <span class="comment">// See IMessageReceiver</span>
+    BeginListen(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, receiver <a href="index.html#IMessageReceiver">IMessageReceiver</a>)
+
+    <span class="comment">// EndListen method are ends listening for incoming messages.</span>
+    <span class="comment">// When this method is call listen unblocks the thread and execution continues.</span>
+    <span class="comment">//   - correlationId     (optional) transaction id to trace execution through call chain.</span>
+    EndListen(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="IMessageQueueOverrides">type <a href="http://localhost:6060/src/queues/MessageQueue.go?s=524:1028#L5">IMessageQueueOverrides</a>
+				<a class="permalink" href="index.html#IMessageQueueOverrides">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type IMessageQueueOverrides interface {
+    <a href="index.html#IMessageQueue">IMessageQueue</a>
+
+    <span class="comment">// OpenWithParams method are opens the component with given connection and credential parameters.</span>
+    <span class="comment">//  - correlationId     (optional) transaction id to trace execution through call chain.</span>
+    <span class="comment">//  - connections        connection parameters</span>
+    <span class="comment">//  - credential        credential parameters</span>
+    <span class="comment">// Returns error or nil no errors occured.</span>
+    OpenWithParams(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, connections []*<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/connect/">cconn</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/connect/#ConnectionParams">ConnectionParams</a>, credential *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/auth/">cauth</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/auth/#CredentialParams">CredentialParams</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="IMessageReceiver">type <a href="http://localhost:6060/src/queues/IMessageReceiver.go?s=605:1007#L11">IMessageReceiver</a>
+				<a class="permalink" href="index.html#IMessageReceiver">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+IMessageReceiver callback interface to receive incoming messages.
+Example:
+</p>
+<pre>    type MyMessageReceiver struct {
+      func (c*MyMessageReceiver) ReceiveMessage(envelop MessageEnvelop, queue IMessageQueue) {
+          fmt.Println(&#34;Received message: &#34; + envelop.GetMessageAsString());
+      }
+    }
+
+    messageQueue := NewMemoryMessageQueue();
+    messageQueue.Listen(&#34;123&#34;, NewMyMessageReceiver());
+
+	opnErr := messageQueue.Open(&#34;123&#34;)
+	if opnErr == nil{
+       messageQueue.Send(&#34;123&#34;, NewMessageEnvelop(&#34;&#34;, &#34;mymessage&#34;, &#34;ABC&#34;)); // Output in console: &#34;Received message: ABC&#34;
+    }
+</pre>
+
+			<pre>type IMessageReceiver interface {
+
+    <span class="comment">// ReceiveMessage method are receives incoming message from the queue.</span>
+    <span class="comment">//   - envelope  an incoming message</span>
+    <span class="comment">//   - queue     a queue where the message comes from</span>
+    <span class="comment">//   - callback  callback function that receives error or null for success.</span>
+    <span class="comment">// See: MessageEnvelope</span>
+    <span class="comment">// See: IMessageQueue</span>
+    ReceiveMessage(envelope *<a href="index.html#MessageEnvelope">MessageEnvelope</a>, queue <a href="index.html#IMessageQueue">IMessageQueue</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="LockedMessage">type <a href="http://localhost:6060/src/queues/LockedMessage.go?s=151:415#L1">LockedMessage</a>
+				<a class="permalink" href="index.html#LockedMessage">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+LockedMessage data object used to store and lock incoming messages in MemoryMessageQueue.
+See: MemoryMessageQueue
+</p>
+
+			<pre>type LockedMessage struct {
+    <span class="comment">//The incoming message.</span>
+<span id="LockedMessage.Message"></span>    Message *<a href="index.html#MessageEnvelope">MessageEnvelope</a>
+
+    <span class="comment">// The expiration time for the message lock.</span>
+    <span class="comment">// If it is null then the message is not locked.</span>
+<span id="LockedMessage.ExpirationTime"></span>    ExpirationTime <a href="http://localhost:6060/pkg/time/">time</a>.<a href="http://localhost:6060/pkg/time/#Time">Time</a>
+
+    <span class="comment">//The lock timeout in milliseconds.</span>
+<span id="LockedMessage.Timeout"></span>    Timeout <a href="http://localhost:6060/pkg/time/">time</a>.<a href="http://localhost:6060/pkg/time/#Duration">Duration</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="MemoryMessageQueue">type <a href="http://localhost:6060/src/queues/MemoryMessageQueue.go?s=950:1149#L28">MemoryMessageQueue</a>
+				<a class="permalink" href="index.html#MemoryMessageQueue">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+MemoryMessageQueue Message queue that sends and receives messages within the same process by using shared memory.
+This queue is typically used for testing to mock real queues.
+Configuration parameters:
+</p>
+<pre>- name:                        name of the message queue
+</pre>
+<p>
+References:
+</p>
+<p>
+- *:logger:*:*:1.0           (optional)  ILogger components to pass log messages
+- *:counters:*:*:1.0         (optional)  ICounters components to pass collected measurements
+</p>
+<p>
+See MessageQueue
+See MessagingCapabilities
+</p>
+<p>
+Example:
+</p>
+<pre>    queue := NewMessageQueue(&#34;myqueue&#34;);
+    queue.Send(&#34;123&#34;, NewMessageEnvelop(&#34;&#34;, &#34;mymessage&#34;, &#34;ABC&#34;));
+	message, err := queue.Receive(&#34;123&#34;)
+        if (message != nil) {
+           ...
+           queue.Complete(&#34;123&#34;, message);
+        }
+</pre>
+
+			<pre>type MemoryMessageQueue struct {
+    <a href="index.html#MessageQueue">MessageQueue</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewMemoryMessageQueue">func <a href="http://localhost:6060/src/queues/MemoryMessageQueue.go?s=1331:1390#L41">NewMemoryMessageQueue</a>
+					<a class="permalink" href="index.html#NewMemoryMessageQueue">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewMemoryMessageQueue(name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#MemoryMessageQueue">MemoryMessageQueue</a></pre>
+				<p>
+NewMemoryMessageQueue method are creates a new instance of the message queue.
+</p>
+<pre>- name  (optional) a queue name.
+</pre>
+<p>
+Returns: *MemoryMessageQueue
+See MessagingCapabilities
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="MemoryMessageQueue.Abandon">func (*MemoryMessageQueue) <a href="http://localhost:6060/src/queues/MemoryMessageQueue.go?s=9288:9362#L281">Abandon</a>
+					<a class="permalink" href="index.html#MemoryMessageQueue.Abandon">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryMessageQueue">MemoryMessageQueue</a>) Abandon(message *<a href="index.html#MessageEnvelope">MessageEnvelope</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Abandon method are returnes message into the queue and makes it available for all subscribers to receive it again.
+This method is usually used to return a message which could not be processed at the moment
+to repeat the attempt. Messages that cause unrecoverable errors shall be removed permanently
+or/and send to dead letter queue.
+</p>
+<pre>- message   a message to return.
+</pre>
+<p>
+Returns: error or nil for success.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryMessageQueue.Clear">func (*MemoryMessageQueue) <a href="http://localhost:6060/src/queues/MemoryMessageQueue.go?s=3056:3124#L93">Clear</a>
+					<a class="permalink" href="index.html#MemoryMessageQueue.Clear">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryMessageQueue">MemoryMessageQueue</a>) Clear(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Clear method are clears component state.
+</p>
+<pre>- correlationId 	(optional) transaction id to trace execution through call chain.
+</pre>
+<p>
+Returns: error or nil no errors occured.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryMessageQueue.Close">func (*MemoryMessageQueue) <a href="http://localhost:6060/src/queues/MemoryMessageQueue.go?s=2682:2750#L81">Close</a>
+					<a class="permalink" href="index.html#MemoryMessageQueue.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryMessageQueue">MemoryMessageQueue</a>) Close(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Close method are closes component and frees used resources.
+</p>
+<pre>- correlationId 	(optional) transaction id to trace execution through call chain.
+</pre>
+<p>
+Returns: error or nil no errors occured.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryMessageQueue.Complete">func (*MemoryMessageQueue) <a href="http://localhost:6060/src/queues/MemoryMessageQueue.go?s=8477:8552#L258">Complete</a>
+					<a class="permalink" href="index.html#MemoryMessageQueue.Complete">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryMessageQueue">MemoryMessageQueue</a>) Complete(message *<a href="index.html#MessageEnvelope">MessageEnvelope</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Complete method are permanently removes a message from the queue.
+This method is usually used to remove the message after successful processing.
+</p>
+<pre>- message   a message to remove.
+</pre>
+<p>
+Returns: error or nil for success.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryMessageQueue.EndListen">func (*MemoryMessageQueue) <a href="http://localhost:6060/src/queues/MemoryMessageQueue.go?s=12200:12260#L375">EndListen</a>
+					<a class="permalink" href="index.html#MemoryMessageQueue.EndListen">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryMessageQueue">MemoryMessageQueue</a>) EndListen(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
+				<p>
+EndListen method are ends listening for incoming messages.
+When c method is call listen unblocks the thread and execution continues.
+</p>
+<pre>- correlationId     (optional) transaction id to trace execution through call chain.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryMessageQueue.IsOpen">func (*MemoryMessageQueue) <a href="http://localhost:6060/src/queues/MemoryMessageQueue.go?s=1848:1890#L59">IsOpen</a>
+					<a class="permalink" href="index.html#MemoryMessageQueue.IsOpen">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryMessageQueue">MemoryMessageQueue</a>) IsOpen() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+IsOpen method are checks if the component is opened.
+Return true if the component has been opened and false otherwise.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryMessageQueue.Listen">func (*MemoryMessageQueue) <a href="http://localhost:6060/src/queues/MemoryMessageQueue.go?s=11022:11112#L339">Listen</a>
+					<a class="permalink" href="index.html#MemoryMessageQueue.Listen">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryMessageQueue">MemoryMessageQueue</a>) Listen(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, receiver <a href="index.html#IMessageReceiver">IMessageReceiver</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<p>
+Listen method are listens for incoming messages and blocks the current thread until queue is closed.
+</p>
+<pre>- correlationId     (optional) transaction id to trace execution through call chain.
+- receiver          a receiver to receive incoming messages.
+</pre>
+<p>
+See IMessageReceiver
+See Receive
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryMessageQueue.MoveToDeadLetter">func (*MemoryMessageQueue) <a href="http://localhost:6060/src/queues/MemoryMessageQueue.go?s=10256:10339#L316">MoveToDeadLetter</a>
+					<a class="permalink" href="index.html#MemoryMessageQueue.MoveToDeadLetter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryMessageQueue">MemoryMessageQueue</a>) MoveToDeadLetter(message *<a href="index.html#MessageEnvelope">MessageEnvelope</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+MoveToDeadLetter method are permanently removes a message from the queue and sends it to dead letter queue.
+</p>
+<pre>- message   a message to be removed.
+</pre>
+<p>
+Returns: error or nil for success.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryMessageQueue.OpenWithParams">func (*MemoryMessageQueue) <a href="http://localhost:6060/src/queues/MemoryMessageQueue.go?s=2239:2390#L68">OpenWithParams</a>
+					<a class="permalink" href="index.html#MemoryMessageQueue.OpenWithParams">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryMessageQueue">MemoryMessageQueue</a>) OpenWithParams(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, connections []*<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/connect/">ccon</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/connect/#ConnectionParams">ConnectionParams</a>,
+    credential *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/auth/">auth</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/auth/#CredentialParams">CredentialParams</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+OpenWithParams method are opens the component with given connection and credential parameters.
+</p>
+<pre>- correlationId     (optional) transaction id to trace execution through call chain.
+- connection        connection parameters
+- credential        credential parameters
+</pre>
+<p>
+Retruns: error or nil no errors occured.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryMessageQueue.Peek">func (*MemoryMessageQueue) <a href="http://localhost:6060/src/queues/MemoryMessageQueue.go?s=4540:4632#L136">Peek</a>
+					<a class="permalink" href="index.html#MemoryMessageQueue.Peek">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryMessageQueue">MemoryMessageQueue</a>) Peek(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (result *<a href="index.html#MessageEnvelope">MessageEnvelope</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Peek meethod are peeks a single incoming message from the queue without removing it.
+If there are no messages available in the queue it returns nil.
+</p>
+<pre>- correlationId     (optional) transaction id to trace execution through call chain.
+</pre>
+<p>
+Returns: a message or error.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryMessageQueue.PeekBatch">func (*MemoryMessageQueue) <a href="http://localhost:6060/src/queues/MemoryMessageQueue.go?s=5279:5398#L158">PeekBatch</a>
+					<a class="permalink" href="index.html#MemoryMessageQueue.PeekBatch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryMessageQueue">MemoryMessageQueue</a>) PeekBatch(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, messageCount <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>) (result []*<a href="index.html#MessageEnvelope">MessageEnvelope</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+PeekBatch method are peeks multiple incoming messages from the queue without removing them.
+If there are no messages available in the queue it returns an empty list.
+</p>
+<pre>- correlationId     (optional) transaction id to trace execution through call chain.
+- messageCount      a maximum number of messages to peek.
+</pre>
+<p>
+Returns: a list with messages or error.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryMessageQueue.ReadMessageCount">func (*MemoryMessageQueue) <a href="http://localhost:6060/src/queues/MemoryMessageQueue.go?s=3447:3519#L106">ReadMessageCount</a>
+					<a class="permalink" href="index.html#MemoryMessageQueue.ReadMessageCount">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryMessageQueue">MemoryMessageQueue</a>) ReadMessageCount() (count <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+ReadMessageCount method are reads the current number of messages in the queue to be delivered.
+Returns: number of messages or error.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryMessageQueue.Receive">func (*MemoryMessageQueue) <a href="http://localhost:6060/src/queues/MemoryMessageQueue.go?s=6080:6191#L180">Receive</a>
+					<a class="permalink" href="index.html#MemoryMessageQueue.Receive">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryMessageQueue">MemoryMessageQueue</a>) Receive(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, waitTimeout <a href="http://localhost:6060/pkg/time/">time</a>.<a href="http://localhost:6060/pkg/time/#Duration">Duration</a>) (*<a href="index.html#MessageEnvelope">MessageEnvelope</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>Receive method are receives an incoming message and removes it from the queue.
+ - correlationId     (optional) transaction id to trace execution through call chain.
+ - waitTimeout       a timeout in milliseconds to wait for a message to come.
+</pre>
+<p>
+Returns: a message or error.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryMessageQueue.RenewLock">func (*MemoryMessageQueue) <a href="http://localhost:6060/src/queues/MemoryMessageQueue.go?s=7562:7665#L229">RenewLock</a>
+					<a class="permalink" href="index.html#MemoryMessageQueue.RenewLock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryMessageQueue">MemoryMessageQueue</a>) RenewLock(message *<a href="index.html#MessageEnvelope">MessageEnvelope</a>, lockTimeout <a href="http://localhost:6060/pkg/time/">time</a>.<a href="http://localhost:6060/pkg/time/#Duration">Duration</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+RenewLock method are renews a lock on a message that makes it invisible from other receivers in the queue.
+This method is usually used to extend the message processing time.
+</p>
+<pre>- message       a message to extend its lock.
+- lockTimeout   a locking timeout in milliseconds.
+</pre>
+<p>
+Returns:  error or nil for success.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryMessageQueue.Send">func (*MemoryMessageQueue) <a href="http://localhost:6060/src/queues/MemoryMessageQueue.go?s=3851:3945#L118">Send</a>
+					<a class="permalink" href="index.html#MemoryMessageQueue.Send">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryMessageQueue">MemoryMessageQueue</a>) Send(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, envelope *<a href="index.html#MessageEnvelope">MessageEnvelope</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Send method are sends a message into the queue.
+</p>
+<pre>- correlationId     (optional) transaction id to trace execution through call chain.
+- envelope          a message envelop to be sent.
+</pre>
+<p>
+Returns: error or nil for success.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MessageEnvelope">type <a href="http://localhost:6060/src/queues/MessageEnvelope.go?s=556:1055#L9">MessageEnvelope</a>
+				<a class="permalink" href="index.html#MessageEnvelope">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+MessageEnvelope allows adding additional information to messages. A correlation id, message id, and a message type
+are added to the data being sent/received. Additionally, a MessageEnvelope can reference a lock token.
+Side note: a MessageEnvelope&#34;s message is stored as a buffer, so strings are converted
+using utf8 conversions.
+</p>
+
+			<pre>type MessageEnvelope struct {
+
+    <span class="comment">//The unique business transaction id that is used to trace calls across components.</span>
+<span id="MessageEnvelope.CorrelationId"></span>    CorrelationId <a href="http://localhost:6060/pkg/builtin/#string">string</a> `json:&#34;correlation_id&#34;`
+    <span class="comment">// The message&#34;s auto-generated ID.</span>
+<span id="MessageEnvelope.MessageId"></span>    MessageId <a href="http://localhost:6060/pkg/builtin/#string">string</a> `json:&#34;message_id&#34;`
+    <span class="comment">// String value that defines the stored message&#34;s type.</span>
+<span id="MessageEnvelope.MessageType"></span>    MessageType <a href="http://localhost:6060/pkg/builtin/#string">string</a> `json:&#34;message_type&#34;`
+    <span class="comment">// The time at which the message was sent.</span>
+<span id="MessageEnvelope.SentTime"></span>    SentTime <a href="http://localhost:6060/pkg/time/">time</a>.<a href="http://localhost:6060/pkg/time/#Time">Time</a> `json:&#34;sent_time&#34;`
+    <span class="comment">//The stored message.</span>
+<span id="MessageEnvelope.Message"></span>    Message []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a> `json:&#34;message&#34;`
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewEmptyMessageEnvelope">func <a href="http://localhost:6060/src/queues/MessageEnvelope.go?s=1165:1212#L26">NewEmptyMessageEnvelope</a>
+					<a class="permalink" href="index.html#NewEmptyMessageEnvelope">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewEmptyMessageEnvelope() *<a href="index.html#MessageEnvelope">MessageEnvelope</a></pre>
+				<p>
+NewMessageEnvelope method are creates an empty MessageEnvelope
+Returns: *MessageEnvelope new instance
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewMessageEnvelope">func <a href="http://localhost:6060/src/queues/MessageEnvelope.go?s=1665:1763#L37">NewMessageEnvelope</a>
+					<a class="permalink" href="index.html#NewMessageEnvelope">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewMessageEnvelope(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, messageType <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>) *<a href="index.html#MessageEnvelope">MessageEnvelope</a></pre>
+				<p>
+NewMessageEnvelope method are creates a new MessageEnvelope, which adds a correlation id, message id, and a type to the
+data being sent/received.
+</p>
+<pre>- correlationId     (optional) transaction id to trace execution through call chain.
+- messageType       a string value that defines the message&#34;s type.
+- message           the data being sent/received.
+</pre>
+<p>
+Returns: *MessageEnvelope new instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="MessageEnvelope.GetMessageAsJson">func (*MessageEnvelope) <a href="http://localhost:6060/src/queues/MessageEnvelope.go?s=2826:2882#L70">GetMessageAsJson</a>
+					<a class="permalink" href="index.html#MessageEnvelope.GetMessageAsJson">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessageEnvelope">MessageEnvelope</a>) GetMessageAsJson() interface{}</pre>
+				<p>
+GetMessageAsJson method are returns the value that was stored in this message as a JSON string.
+See  SetMessageAsJson
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MessageEnvelope.GetMessageAsString">func (*MessageEnvelope) <a href="http://localhost:6060/src/queues/MessageEnvelope.go?s=2401:2454#L58">GetMessageAsString</a>
+					<a class="permalink" href="index.html#MessageEnvelope.GetMessageAsString">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessageEnvelope">MessageEnvelope</a>) GetMessageAsString() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<p>
+GetMessageAsString method are returns the information stored in this message as a string.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MessageEnvelope.GetReference">func (*MessageEnvelope) <a href="http://localhost:6060/src/queues/MessageEnvelope.go?s=2019:2071#L47">GetReference</a>
+					<a class="permalink" href="index.html#MessageEnvelope.GetReference">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessageEnvelope">MessageEnvelope</a>) GetReference() interface{}</pre>
+				<p>
+GetReference method are returns the lock token that this MessageEnvelope references.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MessageEnvelope.MarshalJSON">func (*MessageEnvelope) <a href="http://localhost:6060/src/queues/MessageEnvelope.go?s=4175:4230#L126">MarshalJSON</a>
+					<a class="permalink" href="index.html#MessageEnvelope.MarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessageEnvelope">MessageEnvelope</a>) MarshalJSON() ([]<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="MessageEnvelope.SetMessageAsJson">func (*MessageEnvelope) <a href="http://localhost:6060/src/queues/MessageEnvelope.go?s=3214:3275#L87">SetMessageAsJson</a>
+					<a class="permalink" href="index.html#MessageEnvelope.SetMessageAsJson">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessageEnvelope">MessageEnvelope</a>) SetMessageAsJson(value interface{})</pre>
+				<p>
+SetMessageAsJson method are stores the given value as a JSON string.
+</p>
+<pre>- value     the value to convert to JSON and store in this message.
+</pre>
+<p>
+See  GetMessageAsJson
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MessageEnvelope.SetMessageAsString">func (*MessageEnvelope) <a href="http://localhost:6060/src/queues/MessageEnvelope.go?s=2611:2669#L64">SetMessageAsString</a>
+					<a class="permalink" href="index.html#MessageEnvelope.SetMessageAsString">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessageEnvelope">MessageEnvelope</a>) SetMessageAsString(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
+				<p>
+SetMessageAsString method are stores the given string.
+</p>
+<pre>- value    the string to set. Will be converted to a bufferg.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="MessageEnvelope.SetReference">func (*MessageEnvelope) <a href="http://localhost:6060/src/queues/MessageEnvelope.go?s=2224:2281#L53">SetReference</a>
+					<a class="permalink" href="index.html#MessageEnvelope.SetReference">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessageEnvelope">MessageEnvelope</a>) SetReference(value interface{})</pre>
+				<p>
+SetReference method are sets a lock token reference for this MessageEnvelope.
+</p>
+<pre>- value     the lock token to reference.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="MessageEnvelope.String">func (*MessageEnvelope) <a href="http://localhost:6060/src/queues/MessageEnvelope.go?s=3663:3704#L102">String</a>
+					<a class="permalink" href="index.html#MessageEnvelope.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessageEnvelope">MessageEnvelope</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<p>
+String method are convert&#34;s this MessageEnvelope to a string, using the following format:
+&lt;correlation_id&gt;,&lt;MessageType&gt;,&lt;message.toString&gt;
+If any of the values are nil, they will be replaced with ---.
+Returns the generated string.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MessageEnvelope.UnmarshalJSON">func (*MessageEnvelope) <a href="http://localhost:6060/src/queues/MessageEnvelope.go?s=4733:4791#L148">UnmarshalJSON</a>
+					<a class="permalink" href="index.html#MessageEnvelope.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessageEnvelope">MessageEnvelope</a>) UnmarshalJSON(data []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MessageQueue">type <a href="http://localhost:6060/src/queues/MessageQueue.go?s=2267:2619#L42">MessageQueue</a>
+				<a class="permalink" href="index.html#MessageQueue">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+MessageQueue message queue that is used as a basis for specific message queue implementations.
+</p>
+<p>
+Configuration parameters:
+</p>
+<pre>- name:                        name of the message queue
+- connection(s):
+  - discovery_key:             key to retrieve parameters from discovery service
+  - protocol:                  connection protocol like http, https, tcp, udp
+  - host:                      host name or IP address
+  - port:                      port number
+  - uri:                       resource URI or connection string with all parameters in it
+- credential(s):
+  - store_key:                 key to retrieve parameters from credential store
+  - username:                  user name
+  - password:                  user password
+  - access_id:                 application access id
+  - access_key:                application secret key
+</pre>
+<p>
+References:
+</p>
+<p>
+- *:Logger:*:*:1.0           (optional)  ILogger components to pass log messages
+- *:Counters:*:*:1.0         (optional)  ICounters components to pass collected measurements
+- *:discovery:*:*:1.0        (optional)  IDiscovery components to discover connection(s)
+- *:credential-store:*:*:1.0 (optional)  ICredentialStore componetns to lookup credential(s)
+</p>
+
+			<pre>type MessageQueue struct {
+<span id="MessageQueue.Overrides"></span>    Overrides          <a href="index.html#IMessageQueueOverrides">IMessageQueueOverrides</a>
+<span id="MessageQueue.Logger"></span>    Logger             *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/log/">clog</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/log/#CompositeLogger">CompositeLogger</a>
+<span id="MessageQueue.Counters"></span>    Counters           *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/count/">ccount</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/count/#CompositeCounters">CompositeCounters</a>
+<span id="MessageQueue.ConnectionResolver"></span>    ConnectionResolver *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/connect/">cconn</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/connect/#ConnectionResolver">ConnectionResolver</a>
+<span id="MessageQueue.CredentialResolver"></span>    CredentialResolver *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/auth/">cauth</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/auth/#CredentialResolver">CredentialResolver</a>
+<span id="MessageQueue.Lock"></span>    Lock               <a href="http://localhost:6060/pkg/sync/">sync</a>.<a href="http://localhost:6060/pkg/sync/#Mutex">Mutex</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="InheritMessageQueue">func <a href="http://localhost:6060/src/queues/MessageQueue.go?s=2842:2964#L57">InheritMessageQueue</a>
+					<a class="permalink" href="index.html#InheritMessageQueue">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func InheritMessageQueue(overrides <a href="index.html#IMessageQueueOverrides">IMessageQueueOverrides</a>, name <a href="http://localhost:6060/pkg/builtin/#string">string</a>, capabilities *<a href="index.html#MessagingCapabilities">MessagingCapabilities</a>) *<a href="index.html#MessageQueue">MessageQueue</a></pre>
+				<p>
+NewMessageQueue method are creates a new instance of the message queue.
+</p>
+<pre>- overrides a message queue overrides
+- name  (optional) a queue name
+- capabilities (optional) capabilities of this message queue
+</pre>
+
+				
+				
+			
+
+			
+				
+				<h3 id="MessageQueue.BeginListen">func (*MessageQueue) <a href="http://localhost:6060/src/queues/MessageQueue.go?s=7004:7087#L171">BeginListen</a>
+					<a class="permalink" href="index.html#MessageQueue.BeginListen">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessageQueue">MessageQueue</a>) BeginListen(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, receiver <a href="index.html#IMessageReceiver">IMessageReceiver</a>)</pre>
+				<p>
+BeginListen method are listens for incoming messages without blocking the current thread.
+</p>
+<pre>- correlationId     (optional) transaction id to trace execution through call chain.
+- receiver          a receiver to receive incoming messages.
+</pre>
+<p>
+See Listen
+See IMessageReceiver
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MessageQueue.Capabilities">func (*MessageQueue) <a href="http://localhost:6060/src/queues/MessageQueue.go?s=3626:3686#L83">Capabilities</a>
+					<a class="permalink" href="index.html#MessageQueue.Capabilities">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessageQueue">MessageQueue</a>) Capabilities() *<a href="index.html#MessagingCapabilities">MessagingCapabilities</a></pre>
+				<p>
+Capabilities method are gets the queue capabilities
+Return the queue&#39;s capabilities object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MessageQueue.CheckOpen">func (*MessageQueue) <a href="http://localhost:6060/src/queues/MessageQueue.go?s=5839:5899#L141">CheckOpen</a>
+					<a class="permalink" href="index.html#MessageQueue.CheckOpen">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessageQueue">MessageQueue</a>) CheckOpen(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<p>
+Checks if message queue has been opened
+</p>
+<pre>- correlationId     (optional) transaction id to trace execution through call chain.
+</pre>
+<p>
+Returns: error or null for success.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MessageQueue.Configure">func (*MessageQueue) <a href="http://localhost:6060/src/queues/MessageQueue.go?s=3850:3910#L89">Configure</a>
+					<a class="permalink" href="index.html#MessageQueue.Configure">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessageQueue">MessageQueue</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-go/config/">cconf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>)</pre>
+				<p>
+Configure method are configures component by passing configuration parameters.
+</p>
+<pre>- config    configuration parameters to be set.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="MessageQueue.Name">func (*MessageQueue) <a href="http://localhost:6060/src/queues/MessageQueue.go?s=3471:3507#L77">Name</a>
+					<a class="permalink" href="index.html#MessageQueue.Name">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessageQueue">MessageQueue</a>) Name() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<p>
+Name method are gets the queue name
+Return the queue name.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MessageQueue.Open">func (*MessageQueue) <a href="http://localhost:6060/src/queues/MessageQueue.go?s=4697:4752#L110">Open</a>
+					<a class="permalink" href="index.html#MessageQueue.Open">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessageQueue">MessageQueue</a>) Open(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<p>
+Open method are opens the component.
+</p>
+<pre>- correlationId 	(optional) transaction id to trace execution through call chain.
+</pre>
+<p>
+Returns: error or null no errors occured.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MessageQueue.OpenWithParams">func (*MessageQueue) <a href="http://localhost:6060/src/queues/MessageQueue.go?s=5496:5637#L133">OpenWithParams</a>
+					<a class="permalink" href="index.html#MessageQueue.OpenWithParams">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessageQueue">MessageQueue</a>) OpenWithParams(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, connections []*<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/connect/">cconn</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/connect/#ConnectionParams">ConnectionParams</a>,
+    credential *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/auth/">cauth</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/auth/#CredentialParams">CredentialParams</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<p>
+OpenWithParams method are opens the component with given connection and credential parameters.
+</p>
+<pre>- correlationId     (optional) transaction id to trace execution through call chain.
+- connections        connection parameters
+- credential        credential parameters
+</pre>
+<p>
+Returns error or nil no errors occured.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MessageQueue.SendAsObject">func (*MessageQueue) <a href="http://localhost:6060/src/queues/MessageQueue.go?s=6450:6560#L160">SendAsObject</a>
+					<a class="permalink" href="index.html#MessageQueue.SendAsObject">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessageQueue">MessageQueue</a>) SendAsObject(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, messageType <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message interface{}) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+SendAsObject method are sends an object into the queue.
+Before sending the object is converted into JSON string and wrapped in a MessageEnvelop.
+</p>
+<pre>- correlationId     (optional) transaction id to trace execution through call chain.
+- messageType       a message type
+- value             an object value to be sent
+</pre>
+<p>
+Returns: error or null for success.
+See Send
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MessageQueue.SetReferences">func (*MessageQueue) <a href="http://localhost:6060/src/queues/MessageQueue.go?s=4284:4349#L100">SetReferences</a>
+					<a class="permalink" href="index.html#MessageQueue.SetReferences">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessageQueue">MessageQueue</a>) SetReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-go/refer/">cref</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-go/refer/#IReferences">IReferences</a>)</pre>
+				<p>
+SetReferences mmethod are sets references to dependent components.
+</p>
+<pre>- references 	references to locate the component dependencies.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="MessageQueue.String">func (*MessageQueue) <a href="http://localhost:6060/src/queues/MessageQueue.go?s=7386:7424#L182">String</a>
+					<a class="permalink" href="index.html#MessageQueue.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessageQueue">MessageQueue</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<p>
+String method are gets a string representation of the object.
+Return a string representation of the object.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MessagingCapabilities">type <a href="http://localhost:6060/src/queues/MessagingCapabilities.go?s=197:432#L1">MessagingCapabilities</a>
+				<a class="permalink" href="index.html#MessagingCapabilities">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+MessagingCapabilities data object that contains supported capabilities of a message queue.
+If certain capability is not supported a queue will throw NotImplemented exception.
+</p>
+
+			<pre>type MessagingCapabilities struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewMessagingCapabilities">func <a href="http://localhost:6060/src/queues/MessagingCapabilities.go?s=1193:1404#L18">NewMessagingCapabilities</a>
+					<a class="permalink" href="index.html#NewMessagingCapabilities">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewMessagingCapabilities(canMessageCount <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>, canSend <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>, canReceive <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>,
+    canPeek <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>, canPeekBatch <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>, canRenewLock <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>, canAbandon <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>,
+    canDeadLetter <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>, canClear <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>) *<a href="index.html#MessagingCapabilities">MessagingCapabilities</a></pre>
+				<p>
+NewMessagingCapabilities method are creates a new instance of the capabilities object.
+</p>
+<pre>- canMessageCount   true if queue supports reading message count.
+- canSend           true if queue is able to send messages.
+- canReceive        true if queue is able to receive messages.
+- canPeek           true if queue is able to peek messages.
+- canPeekBatch      true if queue is able to peek multiple messages in one batch.
+- canRenewLock      true if queue is able to renew message lock.
+- canAbandon        true if queue is able to abandon messages.
+- canDeadLetter     true if queue is able to send messages to dead letter queue.
+- canClear          true if queue can be cleared.
+</pre>
+<p>
+Returns *MessagingCapabilities
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="MessagingCapabilities.CanAbandon">func (*MessagingCapabilities) <a href="http://localhost:6060/src/queues/MessagingCapabilities.go?s=3109:3158#L73">CanAbandon</a>
+					<a class="permalink" href="index.html#MessagingCapabilities.CanAbandon">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessagingCapabilities">MessagingCapabilities</a>) CanAbandon() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+CanAbandon method are informs if the queue is able to abandon messages.
+Returns: true if queue is able to abandon.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MessagingCapabilities.CanClear">func (*MessagingCapabilities) <a href="http://localhost:6060/src/queues/MessagingCapabilities.go?s=3538:3585#L85">CanClear</a>
+					<a class="permalink" href="index.html#MessagingCapabilities.CanClear">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessagingCapabilities">MessagingCapabilities</a>) CanClear() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+CanClear method are informs if the queue can be cleared.
+Returns: true if queue can be cleared.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MessagingCapabilities.CanDeadLetter">func (*MessagingCapabilities) <a href="http://localhost:6060/src/queues/MessagingCapabilities.go?s=3354:3406#L79">CanDeadLetter</a>
+					<a class="permalink" href="index.html#MessagingCapabilities.CanDeadLetter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessagingCapabilities">MessagingCapabilities</a>) CanDeadLetter() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+CanDeadLetter method are informs if the queue is able to send messages to dead letter queue.
+Returns: true if queue is able to send messages to dead letter queue.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MessagingCapabilities.CanMessageCount">func (*MessagingCapabilities) <a href="http://localhost:6060/src/queues/MessagingCapabilities.go?s=1848:1902#L37">CanMessageCount</a>
+					<a class="permalink" href="index.html#MessagingCapabilities.CanMessageCount">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessagingCapabilities">MessagingCapabilities</a>) CanMessageCount() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+CanMessageCount method are informs if the queue is able to read number of messages.
+Returns: true if queue supports reading message count.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MessagingCapabilities.CanPeek">func (*MessagingCapabilities) <a href="http://localhost:6060/src/queues/MessagingCapabilities.go?s=2452:2498#L55">CanPeek</a>
+					<a class="permalink" href="index.html#MessagingCapabilities.CanPeek">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessagingCapabilities">MessagingCapabilities</a>) CanPeek() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+CanPeek method are informs if the queue is able to peek messages.
+Returns: true if queue is able to peek messages.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MessagingCapabilities.CanPeekBatch">func (*MessagingCapabilities) <a href="http://localhost:6060/src/queues/MessagingCapabilities.go?s=2692:2743#L61">CanPeekBatch</a>
+					<a class="permalink" href="index.html#MessagingCapabilities.CanPeekBatch">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessagingCapabilities">MessagingCapabilities</a>) CanPeekBatch() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+CanPeekBatch method are informs if the queue is able to peek multiple messages in one batch.
+Returns: true if queue is able to peek multiple messages in one batch.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MessagingCapabilities.CanReceive">func (*MessagingCapabilities) <a href="http://localhost:6060/src/queues/MessagingCapabilities.go?s=2255:2304#L49">CanReceive</a>
+					<a class="permalink" href="index.html#MessagingCapabilities.CanReceive">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessagingCapabilities">MessagingCapabilities</a>) CanReceive() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+CanReceive method are informs if the queue is able to receive messages.
+Returns: true if queue is able to receive messages.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MessagingCapabilities.CanRenewLock">func (*MessagingCapabilities) <a href="http://localhost:6060/src/queues/MessagingCapabilities.go?s=2908:2959#L67">CanRenewLock</a>
+					<a class="permalink" href="index.html#MessagingCapabilities.CanRenewLock">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessagingCapabilities">MessagingCapabilities</a>) CanRenewLock() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+CanRenewLock method are informs if the queue is able to renew message lock.
+Returns: true if queue is able to renew message lock.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MessagingCapabilities.CanSend">func (*MessagingCapabilities) <a href="http://localhost:6060/src/queues/MessagingCapabilities.go?s=2055:2101#L43">CanSend</a>
+					<a class="permalink" href="index.html#MessagingCapabilities.CanSend">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessagingCapabilities">MessagingCapabilities</a>) CanSend() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+CanSend method are informs if the queue is able to send messages.
+Returns: true if queue is able to send messages.
+</p>
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.13.15.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="http://localhost:6060/doc/tos.html">Terms of Service</a> |
+<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>
