@@ -44,8 +44,12 @@ jobs:
     steps: 
 
     - name: Get repo name
-      run: echo "${GITHUB_REPOSITORY#*/}"
-      
+      run: |
+        echo "${GITHUB_REPOSITORY#*/}"
+        echo "${GITHUB_REPOSITORY}"
+        echo "${{ github.event.repository.name }}"
+        echo "${{ github.repository }}"
+
     ############# Send pipeline metrics #############
 
     - name: Send pipeline metrics
