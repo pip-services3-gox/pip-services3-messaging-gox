@@ -69,6 +69,7 @@ func (c *MemoryMessageQueue) IsOpen() bool {
 }
 
 // OpenWithParams method are opens the component with given connection and credential parameters.
+//   - ctx 			     operation context
 //   - correlationId     (optional) transaction id to trace execution through call chain.
 //   - connection        connection parameters
 //   - credential        credential parameters
@@ -82,6 +83,7 @@ func (c *MemoryMessageQueue) Open(ctx context.Context, correlationId string) (er
 }
 
 // Close method are closes component and frees used resources.
+//   - ctx 			    operation context
 //   - correlationId 	(optional) transaction id to trace execution through call chain.
 // Returns: error or nil no errors occured.
 func (c *MemoryMessageQueue) Close(ctx context.Context, correlationId string) (err error) {
@@ -94,6 +96,7 @@ func (c *MemoryMessageQueue) Close(ctx context.Context, correlationId string) (e
 }
 
 // Clear method are clears component state.
+//   - ctx 			    operation context
 //   - correlationId 	(optional) transaction id to trace execution through call chain.
 // Returns: error or nil no errors occured.
 func (c *MemoryMessageQueue) Clear(ctx context.Context, correlationId string) (err error) {
@@ -118,6 +121,7 @@ func (c *MemoryMessageQueue) ReadMessageCount() (count int64, err error) {
 }
 
 // Send method are sends a message into the queue.
+//   - ctx 			    operation context
 //   - correlationId     (optional) transaction id to trace execution through call chain.
 //   - envelope          a message envelop to be sent.
 // Returns: error or nil for success.
@@ -137,6 +141,7 @@ func (c *MemoryMessageQueue) Send(ctx context.Context, correlationId string, env
 
 // Peek meethod are peeks a single incoming message from the queue without removing it.
 // If there are no messages available in the queue it returns nil.
+//   - ctx 			    operation context
 //   - correlationId     (optional) transaction id to trace execution through call chain.
 // Returns: a message or error.
 func (c *MemoryMessageQueue) Peek(ctx context.Context, correlationId string) (result *MessageEnvelope, err error) {
@@ -158,6 +163,7 @@ func (c *MemoryMessageQueue) Peek(ctx context.Context, correlationId string) (re
 
 // PeekBatch method are peeks multiple incoming messages from the queue without removing them.
 // If there are no messages available in the queue it returns an empty list.
+//   - ctx 			     operation context
 //   - correlationId     (optional) transaction id to trace execution through call chain.
 //   - messageCount      a maximum number of messages to peek.
 // Returns: a list with messages or error.
@@ -180,6 +186,7 @@ func (c *MemoryMessageQueue) PeekBatch(ctx context.Context, correlationId string
 }
 
 //  Receive method are receives an incoming message and removes it from the queue.
+//   - ctx 			     operation context
 //   - correlationId     (optional) transaction id to trace execution through call chain.
 //   - waitTimeout       a timeout in milliseconds to wait for a message to come.
 // Returns: a message or error.
@@ -229,6 +236,7 @@ func (c *MemoryMessageQueue) Receive(ctx context.Context, correlationId string, 
 
 // RenewLock method are renews a lock on a message that makes it invisible from other receivers in the queue.
 // This method is usually used to extend the message processing time.
+//   - ctx 			 operation context
 //   - message       a message to extend its lock.
 //   - lockTimeout   a locking timeout in milliseconds.
 // Returns:  error or nil for success.
@@ -259,6 +267,7 @@ func (c *MemoryMessageQueue) RenewLock(ctx context.Context, message *MessageEnve
 
 // Complete method are permanently removes a message from the queue.
 // This method is usually used to remove the message after successful processing.
+//   - ctx 	     operation context
 //   - message   a message to remove.
 // Returns: error or nil for success.
 func (c *MemoryMessageQueue) Complete(ctx context.Context, message *MessageEnvelope) (err error) {
@@ -282,6 +291,7 @@ func (c *MemoryMessageQueue) Complete(ctx context.Context, message *MessageEnvel
 // This method is usually used to return a message which could not be processed at the moment
 // to repeat the attempt. Messages that cause unrecoverable errors shall be removed permanently
 // or/and send to dead letter queue.
+//   - ctx 		 operation context
 //   - message   a message to return.
 // Returns: error or nil for success.
 func (c *MemoryMessageQueue) Abandon(ctx context.Context, message *MessageEnvelope) (err error) {
@@ -317,6 +327,7 @@ func (c *MemoryMessageQueue) Abandon(ctx context.Context, message *MessageEnvelo
 }
 
 // MoveToDeadLetter method are permanently removes a message from the queue and sends it to dead letter queue.
+//   - ctx 	     operation context
 //   - message   a message to be removed.
 // Returns: error or nil for success.
 func (c *MemoryMessageQueue) MoveToDeadLetter(ctx context.Context, message *MessageEnvelope) (err error) {
@@ -338,6 +349,7 @@ func (c *MemoryMessageQueue) MoveToDeadLetter(ctx context.Context, message *Mess
 }
 
 // Listen method are listens for incoming messages and blocks the current thread until queue is closed.
+//   - ctx 			     operation context
 //   - correlationId     (optional) transaction id to trace execution through call chain.
 //   - receiver          a receiver to receive incoming messages.
 // See IMessageReceiver
@@ -377,6 +389,7 @@ func (c *MemoryMessageQueue) Listen(ctx context.Context, correlationId string, r
 
 // EndListen method are ends listening for incoming messages.
 // When c method is call listen unblocks the thread and execution continues.
+//   - ctx 			     operation context
 //   - correlationId     (optional) transaction id to trace execution through call chain.
 func (c *MemoryMessageQueue) EndListen(ctx context.Context, correlationId string) {
 	atomic.StoreInt32(&c.cancel, 1)

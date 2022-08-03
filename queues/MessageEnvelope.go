@@ -17,12 +17,12 @@ Side note: a MessageEnvelope"s message is stored as a buffer, so strings are con
 using utf8 conversions.
 */
 type MessageEnvelope struct {
-	reference     interface{}
-	CorrelationId string    `json:"correlation_id"` //The unique business transaction id that is used to trace calls across components.
-	MessageId     string    `json:"message_id"`     // The message"s auto-generated ID.
-	MessageType   string    `json:"message_type"`   // String value that defines the stored message"s type.
-	SentTime      time.Time `json:"sent_time"`      // The time at which the message was sent.
-	Message       []byte    `json:"message"`        //The stored message.
+	reference     any
+	CorrelationId string    `json:"correlation_id" bson:"correlation_id"` // The unique business transaction id that is used to trace calls across components.
+	MessageId     string    `json:"message_id" bson:"message_id"`         // The message"s auto-generated ID.
+	MessageType   string    `json:"message_type" bson:"message_type"`     // String value that defines the stored message"s type.
+	SentTime      time.Time `json:"sent_time" bson:"sent_time"`           // The time at which the message was sent.
+	Message       []byte    `json:"message" bson:"message"`               // The stored message.
 }
 
 // NewMessageEnvelope method are creates an empty MessageEnvelope
@@ -48,13 +48,13 @@ func NewMessageEnvelope(correlationId string, messageType string, message []byte
 }
 
 // GetReference method are returns the lock token that this MessageEnvelope references.
-func (c *MessageEnvelope) GetReference() interface{} {
+func (c *MessageEnvelope) GetReference() any {
 	return c.reference
 }
 
 // SetReference method are sets a lock token reference for this MessageEnvelope.
 //   - value     the lock token to reference.
-func (c *MessageEnvelope) SetReference(value interface{}) {
+func (c *MessageEnvelope) SetReference(value any) {
 	c.reference = value
 }
 
@@ -71,37 +71,37 @@ func (c *MessageEnvelope) SetMessageAsString(value string) {
 
 // GetMessageAsJson method are returns the value that was stored in this message as a JSON string.
 // See  SetMessageAsJson
-func (c *MessageEnvelope) GetMessageAsJson() interface{} {
-	var result interface{}
-	return c.GetMessageAs(result)
+func (c *MessageEnvelope) GetMessageAsJson() any {
+	var result any
+	return c.GetMessageAs(&result)
 }
 
 // SetMessageAsJson method are stores the given value as a JSON string.
 //   - value     the value to convert to JSON and store in this message.
 // See  GetMessageAsJson
-func (c *MessageEnvelope) SetMessageAsJson(value interface{}) {
+func (c *MessageEnvelope) SetMessageAsJson(value any) {
 	c.SetMessageAsObject(value)
 }
 
 // GetMessageAs method are returns the value that was stored in this message as object.
 // See  SetMessageAsObject
-func (c *MessageEnvelope) GetMessageAs(value interface{}) interface{} {
+func (c *MessageEnvelope) GetMessageAs(value *any) any {
 	if c.Message == nil {
 		return nil
 	}
 
-	err := json.Unmarshal(c.Message, &value)
+	err := json.Unmarshal(c.Message, value)
 	if err != nil {
 		return nil
 	}
 
-	return value
+	return *value
 }
 
 // SetMessageAsJson method are stores the given value as a JSON string.
 //   - value     the value to convert to JSON and store in this message.
 // See  GetMessageAs
-func (c *MessageEnvelope) SetMessageAsObject(value interface{}) {
+func (c *MessageEnvelope) SetMessageAsObject(value any) {
 	if value == nil {
 		c.Message = []byte{}
 	} else {
@@ -141,7 +141,7 @@ func (c *MessageEnvelope) String() string {
 }
 
 func (c *MessageEnvelope) MarshalJSON() ([]byte, error) {
-	jsonData := map[string]interface{}{
+	jsonData := map[string]any{
 		"message_id":     c.MessageId,
 		"correlation_id": c.CorrelationId,
 		"message_type":   c.MessageType,
@@ -163,7 +163,7 @@ func (c *MessageEnvelope) MarshalJSON() ([]byte, error) {
 }
 
 func (c *MessageEnvelope) UnmarshalJSON(data []byte) error {
-	var jsonData map[string]interface{}
+	var jsonData map[string]any
 	err := json.Unmarshal(data, &jsonData)
 	if err != nil {
 		return err

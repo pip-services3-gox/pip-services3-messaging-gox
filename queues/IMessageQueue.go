@@ -45,7 +45,7 @@ type IMessageQueue interface {
 	//  - value             an object value to be sent
 	// Returns: error or nil for success.
 	// See Send
-	SendAsObject(ctx context.Context, correlationId string, messageType string, value interface{}) error
+	SendAsObject(ctx context.Context, correlationId string, messageType string, value any) error
 
 	// Peek method are peeks a single incoming message from the queue without removing it.
 	// If there are no messages available in the queue it returns nil.

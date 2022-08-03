@@ -172,7 +172,7 @@ func (c *MessageQueue) CheckOpen(correlationId string) error {
 //   - value             an object value to be sent
 // Returns: error or nil for success.
 // See Send
-func (c *MessageQueue) SendAsObject(ctx context.Context, correlationId string, messageType string, message interface{}) (err error) {
+func (c *MessageQueue) SendAsObject(ctx context.Context, correlationId string, messageType string, message any) (err error) {
 	envelope := NewMessageEnvelope(correlationId, messageType, nil)
 	envelope.SetMessageAsJson(message)
 	return c.Overrides.Send(ctx, correlationId, envelope)

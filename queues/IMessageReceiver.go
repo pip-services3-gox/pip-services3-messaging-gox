@@ -7,7 +7,7 @@ IMessageReceiver callback interface to receive incoming messages.
 Example:
 
     type MyMessageReceiver struct {
-      func (c*MyMessageReceiver) ReceiveMessage(envelop MessageEnvelop, queue IMessageQueue) {
+      func (c*MyMessageReceiver) ReceiveMessage(ctx context.Context, envelop MessageEnvelop, queue IMessageQueue) {
           fmt.Println("Received message: " + envelop.GetMessageAsString());
       }
     }
@@ -17,7 +17,7 @@ Example:
 
 	opnErr := messageQueue.Open("123")
 	if opnErr == nil{
-       messageQueue.Send("123", NewMessageEnvelop("", "mymessage", "ABC")); // Output in console: "Received message: ABC"
+       messageQueue.Send("123", NewMessageEnvelope("", "mymessage", "ABC")); // Output in console: "Received message: ABC"
     }
 */
 type IMessageReceiver interface {
