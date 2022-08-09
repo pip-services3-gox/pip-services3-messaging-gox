@@ -21,7 +21,7 @@ The module contains the following packages:
 
 Get the package from the Github repository:
 ```bash
-go get -u github.com/pip-services3-gox/pip-services3-messaging-go@latest
+go get -u github.com/pip-services3-gox/pip-services3-messaging-gox@latest
 ```
 
 ## Develop

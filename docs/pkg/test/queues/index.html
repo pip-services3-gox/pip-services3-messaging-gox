@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.13.15";</script>
+<script>var goVersion = "go1.18.5";</script>
 <script src="../../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -149,7 +149,7 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#TestMsgReceiver.ReceiveMessage">func (c *TestMsgReceiver) ReceiveMessage(message *queues.MessageEnvelope, queue queues.IMessageQueue) (err error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#TestMsgReceiver.ReceiveMessage">func (c *TestMsgReceiver) ReceiveMessage(ctx context.Context, message *queues.MessageEnvelope, queue queues.IMessageQueue) (err error)</a></dd>
 				
 			
 			
@@ -179,7 +179,7 @@
 		
 			
 			
-			<h2 id="MessageQueueFixture">type <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=156:219#L1">MessageQueueFixture</a>
+			<h2 id="MessageQueueFixture">type <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=169:232#L2">MessageQueueFixture</a>
 				<a class="permalink" href="index.html#MessageQueueFixture">&#xb6;</a>
 				
 				
@@ -200,12 +200,12 @@
 
 			
 				
-				<h3 id="NewMessageQueueFixture">func <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=221:297#L5">NewMessageQueueFixture</a>
+				<h3 id="NewMessageQueueFixture">func <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=234:310#L6">NewMessageQueueFixture</a>
 					<a class="permalink" href="index.html#NewMessageQueueFixture">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewMessageQueueFixture(queue <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-go/queues/">queues</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-go/queues/#IMessageQueue">IMessageQueue</a>) *<a href="index.html#MessageQueueFixture">MessageQueueFixture</a></pre>
+				<pre>func NewMessageQueueFixture(queue <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-gox/queues/">queues</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-gox/queues/#IMessageQueue">IMessageQueue</a>) *<a href="index.html#MessageQueueFixture">MessageQueueFixture</a></pre>
 				
 				
 				
@@ -213,7 +213,7 @@
 
 			
 				
-				<h3 id="MessageQueueFixture.TestMoveToDeadMessage">func (*MessageQueueFixture) <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=3788:3853#L107">TestMoveToDeadMessage</a>
+				<h3 id="MessageQueueFixture.TestMoveToDeadMessage">func (*MessageQueueFixture) <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=4041:4106#L108">TestMoveToDeadMessage</a>
 					<a class="permalink" href="index.html#MessageQueueFixture.TestMoveToDeadMessage">&#xb6;</a>
 					
 					
@@ -225,7 +225,7 @@
 				
 			
 				
-				<h3 id="MessageQueueFixture.TestOnMessage">func (*MessageQueueFixture) <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=4373:4430#L123">TestOnMessage</a>
+				<h3 id="MessageQueueFixture.TestOnMessage">func (*MessageQueueFixture) <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=4674:4731#L124">TestOnMessage</a>
 					<a class="permalink" href="index.html#MessageQueueFixture.TestOnMessage">&#xb6;</a>
 					
 					
@@ -237,7 +237,7 @@
 				
 			
 				
-				<h3 id="MessageQueueFixture.TestPeekNoMessage">func (*MessageQueueFixture) <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=3637:3698#L101">TestPeekNoMessage</a>
+				<h3 id="MessageQueueFixture.TestPeekNoMessage">func (*MessageQueueFixture) <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=3874:3935#L102">TestPeekNoMessage</a>
 					<a class="permalink" href="index.html#MessageQueueFixture.TestPeekNoMessage">&#xb6;</a>
 					
 					
@@ -249,7 +249,7 @@
 				
 			
 				
-				<h3 id="MessageQueueFixture.TestReceiveAbandonMessage">func (*MessageQueueFixture) <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=2144:2213#L61">TestReceiveAbandonMessage</a>
+				<h3 id="MessageQueueFixture.TestReceiveAbandonMessage">func (*MessageQueueFixture) <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=2269:2338#L62">TestReceiveAbandonMessage</a>
 					<a class="permalink" href="index.html#MessageQueueFixture.TestReceiveAbandonMessage">&#xb6;</a>
 					
 					
@@ -261,7 +261,7 @@
 				
 			
 				
-				<h3 id="MessageQueueFixture.TestReceiveCompleteMessage">func (*MessageQueueFixture) <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=1414:1484#L40">TestReceiveCompleteMessage</a>
+				<h3 id="MessageQueueFixture.TestReceiveCompleteMessage">func (*MessageQueueFixture) <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=1491:1561#L41">TestReceiveCompleteMessage</a>
 					<a class="permalink" href="index.html#MessageQueueFixture.TestReceiveCompleteMessage">&#xb6;</a>
 					
 					
@@ -273,7 +273,7 @@
 				
 			
 				
-				<h3 id="MessageQueueFixture.TestReceiveSendMessage">func (*MessageQueueFixture) <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=877:943#L25">TestReceiveSendMessage</a>
+				<h3 id="MessageQueueFixture.TestReceiveSendMessage">func (*MessageQueueFixture) <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=922:988#L26">TestReceiveSendMessage</a>
 					<a class="permalink" href="index.html#MessageQueueFixture.TestReceiveSendMessage">&#xb6;</a>
 					
 					
@@ -285,7 +285,7 @@
 				
 			
 				
-				<h3 id="MessageQueueFixture.TestSendPeekMessage">func (*MessageQueueFixture) <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=3029:3092#L84">TestSendPeekMessage</a>
+				<h3 id="MessageQueueFixture.TestSendPeekMessage">func (*MessageQueueFixture) <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=3218:3281#L85">TestSendPeekMessage</a>
 					<a class="permalink" href="index.html#MessageQueueFixture.TestSendPeekMessage">&#xb6;</a>
 					
 					
@@ -297,7 +297,7 @@
 				
 			
 				
-				<h3 id="MessageQueueFixture.TestSendReceiveMessage">func (*MessageQueueFixture) <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=360:426#L12">TestSendReceiveMessage</a>
+				<h3 id="MessageQueueFixture.TestSendReceiveMessage">func (*MessageQueueFixture) <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=373:439#L13">TestSendReceiveMessage</a>
 					<a class="permalink" href="index.html#MessageQueueFixture.TestSendReceiveMessage">&#xb6;</a>
 					
 					
@@ -311,14 +311,14 @@
 		
 			
 			
-			<h2 id="TestMsgReceiver">type <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=4991:5055#L144">TestMsgReceiver</a>
+			<h2 id="TestMsgReceiver">type <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=5340:5404#L145">TestMsgReceiver</a>
 				<a class="permalink" href="index.html#TestMsgReceiver">&#xb6;</a>
 				
 				
 			</h2>
 			
 			<pre>type TestMsgReceiver struct {
-<span id="TestMsgReceiver.Message"></span>    Message *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-go/queues/">queues</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-go/queues/#MessageEnvelope">MessageEnvelope</a>
+<span id="TestMsgReceiver.Message"></span>    Message *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-gox/queues/">queues</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-gox/queues/#MessageEnvelope">MessageEnvelope</a>
 }
 </pre>
 
@@ -334,12 +334,12 @@
 
 			
 				
-				<h3 id="TestMsgReceiver.ReceiveMessage">func (*TestMsgReceiver) <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=5057:5170#L148">ReceiveMessage</a>
+				<h3 id="TestMsgReceiver.ReceiveMessage">func (*TestMsgReceiver) <a href="http://localhost:6060/src/test/queues/MessageQueueFixture.go?s=5406:5540#L149">ReceiveMessage</a>
 					<a class="permalink" href="index.html#TestMsgReceiver.ReceiveMessage">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#TestMsgReceiver">TestMsgReceiver</a>) ReceiveMessage(message *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-go/queues/">queues</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-go/queues/#MessageEnvelope">MessageEnvelope</a>, queue <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-go/queues/">queues</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-go/queues/#IMessageQueue">IMessageQueue</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (c *<a href="index.html#TestMsgReceiver">TestMsgReceiver</a>) ReceiveMessage(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, message *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-gox/queues/">queues</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-gox/queues/#MessageEnvelope">MessageEnvelope</a>, queue <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-gox/queues/">queues</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-gox/queues/#IMessageQueue">IMessageQueue</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				
 				
 				
@@ -357,13 +357,13 @@
 
 
 <div id="footer">
-Build version go1.13.15.<br>
+Build version go1.18.5.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,
 and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
-<a href="http://localhost:6060/doc/tos.html">Terms of Service</a> |
-<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
 </div>
 
 </div><!-- .container -->

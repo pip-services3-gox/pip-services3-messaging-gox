@@ -2,7 +2,6 @@ package queues
 
 import (
 	"encoding/base64"
-	"encoding/json"
 	"strings"
 	"time"
 
@@ -10,40 +9,62 @@ import (
 	cdata "github.com/pip-services3-gox/pip-services3-commons-gox/data"
 )
 
-/*
-MessageEnvelope allows adding additional information to messages. A correlation id, message id, and a message type
-are added to the data being sent/received. Additionally, a MessageEnvelope can reference a lock token.
-Side note: a MessageEnvelope"s message is stored as a buffer, so strings are converted
-using utf8 conversions.
-*/
+// MessageEnvelope allows adding additional information to messages. A correlation id, message id, and a message type
+// are added to the data being sent/received. Additionally, a MessageEnvelope can reference a lock token.
+// Side note: a MessageEnvelope"s message is stored as a buffer, so strings are converted
+// using utf8 conversions.
 type MessageEnvelope struct {
-	reference     any
-	CorrelationId string    `json:"correlation_id" bson:"correlation_id"` // The unique business transaction id that is used to trace calls across components.
-	MessageId     string    `json:"message_id" bson:"message_id"`         // The message"s auto-generated ID.
-	MessageType   string    `json:"message_type" bson:"message_type"`     // String value that defines the stored message"s type.
-	SentTime      time.Time `json:"sent_time" bson:"sent_time"`           // The time at which the message was sent.
-	Message       []byte    `json:"message" bson:"message"`               // The stored message.
+	reference        any
+	CorrelationId    string    `json:"correlation_id" bson:"correlation_id"` // The unique business transaction id that is used to trace calls across components.
+	MessageId        string    `json:"message_id" bson:"message_id"`         // The message"s auto-generated ID.
+	MessageType      string    `json:"message_type" bson:"message_type"`     // String value that defines the stored message"s type.
+	SentTime         time.Time `json:"sent_time" bson:"sent_time"`           // The time at which the message was sent.
+	Message          []byte    `json:"message" bson:"message"`               // The stored message.
+	JsonMapConvertor cconv.IJSONEngine[map[string]any]
 }
 
-// NewMessageEnvelope method are creates an empty MessageEnvelope
-// Returns: *MessageEnvelope new instance
+// NewEmptyMessageEnvelope method are creates an empty MessageEnvelope
+//	Returns: *MessageEnvelope new instance
 func NewEmptyMessageEnvelope() *MessageEnvelope {
-	c := MessageEnvelope{}
+	c := MessageEnvelope{
+		JsonMapConvertor: cconv.NewDefaultCustomTypeJsonConvertor[map[string]any](),
+	}
 	return &c
 }
 
 // NewMessageEnvelope method are creates a new MessageEnvelope, which adds a correlation id, message id, and a type to the
 // data being sent/received.
+//	Parameters:
 //   - correlationId     (optional) transaction id to trace execution through call chain.
 //   - messageType       a string value that defines the message"s type.
 //   - message           the data being sent/received.
-// Returns: *MessageEnvelope new instance
+//	Returns: *MessageEnvelope new instance
 func NewMessageEnvelope(correlationId string, messageType string, message []byte) *MessageEnvelope {
-	c := MessageEnvelope{}
+	c := MessageEnvelope{
+		JsonMapConvertor: cconv.NewDefaultCustomTypeJsonConvertor[map[string]any](),
+	}
 	c.CorrelationId = correlationId
 	c.MessageType = messageType
 	c.MessageId = cdata.IdGenerator.NextLong()
 	c.Message = message
+	return &c
+}
+
+// NewMessageEnvelopeFromObject method are creates a new MessageEnvelope, which adds a correlation id, message id, and a type to the
+// data object being sent/received.
+//	Parameters:
+//   - correlationId     (optional) transaction id to trace execution through call chain.
+//   - messageType       a string value that defines the message"s type.
+//   - message           the data object being sent/received.
+//	Returns: *MessageEnvelope new instance
+func NewMessageEnvelopeFromObject(correlationId string, messageType string, message any) *MessageEnvelope {
+	c := MessageEnvelope{
+		JsonMapConvertor: cconv.NewDefaultCustomTypeJsonConvertor[map[string]any](),
+	}
+	c.CorrelationId = correlationId
+	c.MessageType = messageType
+	c.MessageId = cdata.IdGenerator.NextLong()
+	c.SetMessageAsObject(message)
 	return &c
 }
 
@@ -53,7 +74,8 @@ func (c *MessageEnvelope) GetReference() any {
 }
 
 // SetReference method are sets a lock token reference for this MessageEnvelope.
-//   - value     the lock token to reference.
+//	Parameters:
+//		- value     the lock token to reference.
 func (c *MessageEnvelope) SetReference(value any) {
 	c.reference = value
 }
@@ -64,50 +86,32 @@ func (c *MessageEnvelope) GetMessageAsString() string {
 }
 
 // SetMessageAsString method are stores the given string.
-//   - value    the string to set. Will be converted to a bufferg.
+//	Parameters:
+//		- value    the string to set. Will be converted to a bufferg.
 func (c *MessageEnvelope) SetMessageAsString(value string) {
 	c.Message = []byte(value)
 }
 
-// GetMessageAsJson method are returns the value that was stored in this message as a JSON string.
-// See  SetMessageAsJson
-func (c *MessageEnvelope) GetMessageAsJson() any {
-	var result any
-	return c.GetMessageAs(&result)
-}
-
-// SetMessageAsJson method are stores the given value as a JSON string.
-//   - value     the value to convert to JSON and store in this message.
-// See  GetMessageAsJson
-func (c *MessageEnvelope) SetMessageAsJson(value any) {
-	c.SetMessageAsObject(value)
-}
-
 // GetMessageAs method are returns the value that was stored in this message as object.
-// See  SetMessageAsObject
-func (c *MessageEnvelope) GetMessageAs(value *any) any {
-	if c.Message == nil {
-		return nil
+//	see  SetMessageAsObject
+func GetMessageAs[T any](envelope *MessageEnvelope) (T, error) {
+	var defaultValue T
+	if envelope.Message == nil {
+		return defaultValue, nil
 	}
-
-	err := json.Unmarshal(c.Message, value)
-	if err != nil {
-		return nil
-	}
-
-	return *value
+	return cconv.NewDefaultCustomTypeJsonConvertor[T]().FromJson(string(envelope.Message))
 }
 
-// SetMessageAsJson method are stores the given value as a JSON string.
-//   - value     the value to convert to JSON and store in this message.
-// See  GetMessageAs
+// SetMessageAsObject method are stores the given value as a JSON string.
+//	Parameters:
+//		- value     the value to convert to JSON and store in this message.
+//	see  GetMessageAs
 func (c *MessageEnvelope) SetMessageAsObject(value any) {
 	if value == nil {
 		c.Message = []byte{}
 	} else {
-		message, err := json.Marshal(value)
-		if err == nil {
-			c.Message = message
+		if msg, err := cconv.JsonConverter.ToJson(value); err == nil {
+			c.Message = []byte(msg)
 		}
 	}
 }
@@ -115,7 +119,7 @@ func (c *MessageEnvelope) SetMessageAsObject(value any) {
 // String method are convert"s this MessageEnvelope to a string, using the following format:
 // <correlation_id>,<MessageType>,<message.toString>
 // If any of the values are nil, they will be replaced with ---.
-// Returns the generated string.
+//	Returns: the generated string.
 func (c *MessageEnvelope) String() string {
 	builder := strings.Builder{}
 	builder.WriteString("[")
@@ -140,7 +144,7 @@ func (c *MessageEnvelope) String() string {
 	return builder.String()
 }
 
-func (c *MessageEnvelope) MarshalJSON() ([]byte, error) {
+func (c MessageEnvelope) MarshalJSON() ([]byte, error) {
 	jsonData := map[string]any{
 		"message_id":     c.MessageId,
 		"correlation_id": c.CorrelationId,
@@ -155,33 +159,42 @@ func (c *MessageEnvelope) MarshalJSON() ([]byte, error) {
 
 	if c.Message != nil {
 		base64Text := make([]byte, base64.StdEncoding.EncodedLen(len(c.Message)))
-		base64.StdEncoding.Encode(base64Text, []byte(c.Message))
+		base64.StdEncoding.Encode(base64Text, c.Message)
 		jsonData["message"] = string(base64Text)
 	}
 
-	return json.Marshal(jsonData)
+	msg, err := cconv.JsonConverter.ToJson(jsonData)
+	if err != nil {
+		return nil, err
+	}
+	return []byte(msg), nil
 }
 
 func (c *MessageEnvelope) UnmarshalJSON(data []byte) error {
 	var jsonData map[string]any
-	err := json.Unmarshal(data, &jsonData)
+	jsonData, err := c.JsonMapConvertor.FromJson(string(data))
 	if err != nil {
 		return err
 	}
 
-	c.MessageId = jsonData["message_id"].(string)
-	c.CorrelationId = jsonData["correlation_id"].(string)
-	c.MessageType = jsonData["message_type"].(string)
+	if _val, ok := jsonData["message_id"].(string); ok {
+		c.MessageId = _val
+	}
+	if _val, ok := jsonData["correlation_id"].(string); ok {
+		c.CorrelationId = _val
+	}
+	if _val, ok := jsonData["message_type"].(string); ok {
+		c.MessageType = _val
+	}
 	c.SentTime = cconv.DateTimeConverter.ToDateTime(jsonData["sent_time"])
 
-	base64Text, ok := jsonData["message"].(string)
-	if ok && base64Text != "" {
+	if base64Text, ok := jsonData["message"].(string); ok && base64Text != "" {
 		data := make([]byte, base64.StdEncoding.DecodedLen(len(base64Text)))
-		len, err := base64.StdEncoding.Decode(data, []byte(base64Text))
+		n, err := base64.StdEncoding.Decode(data, []byte(base64Text))
 		if err != nil {
 			return err
 		}
-		c.Message = data[:len]
+		c.Message = data[:n]
 	}
 
 	return nil

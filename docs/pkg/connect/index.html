@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.13.15";</script>
+<script>var goVersion = "go1.18.5";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -144,7 +144,7 @@
 		
 			
 			
-			<h2 id="IMessageQueueConnection">type <a href="http://localhost:6060/src/connect/IMessageQueueConnection.go?s=76:153#L1">IMessageQueueConnection</a>
+			<h2 id="IMessageQueueConnection">type <a href="http://localhost:6060/src/connect/IMessageQueueConnection.go?s=76:218#L1">IMessageQueueConnection</a>
 				<a class="permalink" href="index.html#IMessageQueueConnection">&#xb6;</a>
 				
 				
@@ -154,7 +154,9 @@ IMessageQueueConnection Interface for queue connections
 </p>
 
 			<pre>type IMessageQueueConnection interface {
-    GetQueueNames() ([]<a href="http://localhost:6060/pkg/builtin/#string">string</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+    ReadQueueNames() ([]<a href="http://localhost:6060/pkg/builtin/#string">string</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+    CreateQueue(name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
+    DeleteQueue(name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
 }</pre>
 
 			
@@ -180,13 +182,13 @@ IMessageQueueConnection Interface for queue connections
 
 
 <div id="footer">
-Build version go1.13.15.<br>
+Build version go1.18.5.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,
 and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
-<a href="http://localhost:6060/doc/tos.html">Terms of Service</a> |
-<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
 </div>
 
 </div><!-- .container -->

@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.13.15";</script>
+<script>var goVersion = "go1.18.5";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -133,13 +133,21 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#MemoryMessageQueueFactory.Configure">func (c *MemoryMessageQueueFactory) Configure(config *cconf.ConfigParams)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryMessageQueueFactory.CreateQueue">func (c *MemoryMessageQueueFactory) CreateQueue(ctx context.Context, name string) queues.IMessageQueue</a></dd>
+				
+			
+				
+				<dd><a href="index.html#MessageQueueFactory">type MessageQueueFactory</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#MemoryMessageQueueFactory.CreateQueue">func (c *MemoryMessageQueueFactory) CreateQueue(name string) queues.IMessageQueue</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#InheritMessageQueueFactory">func InheritMessageQueueFactory() *MessageQueueFactory</a></dd>
+				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#MemoryMessageQueueFactory.SetReferences">func (c *MemoryMessageQueueFactory) SetReferences(references cref.IReferences)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#MessageQueueFactory.Configure">func (c *MessageQueueFactory) Configure(ctx context.Context, config *cconf.ConfigParams)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MessageQueueFactory.SetReferences">func (c *MessageQueueFactory) SetReferences(ctx context.Context, references cref.IReferences)</a></dd>
 				
 			
 			
@@ -159,6 +167,8 @@
 			
 				<a href="http://localhost:6060/src/build/MemoryMessageQueueFactory.go">MemoryMessageQueueFactory.go</a>
 			
+				<a href="http://localhost:6060/src/build/MessageQueueFactory.go">MessageQueueFactory.go</a>
+			
 			</span>
 			</p>
 		
@@ -173,7 +183,7 @@
 		
 			
 			
-			<h2 id="DefaultMessagingFactory">type <a href="http://localhost:6060/src/build/DefaultMessagingFactory.go?s=425:480#L4">DefaultMessagingFactory</a>
+			<h2 id="DefaultMessagingFactory">type <a href="http://localhost:6060/src/build/DefaultMessagingFactory.go?s=431:486#L4">DefaultMessagingFactory</a>
 				<a class="permalink" href="index.html#DefaultMessagingFactory">&#xb6;</a>
 				
 				
@@ -188,7 +198,7 @@ See MemoryMessageQueue
 </p>
 
 			<pre>type DefaultMessagingFactory struct {
-    <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/build/">cbuild</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/build/#Factory">Factory</a>
+    <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/build/">cbuild</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/build/#Factory">Factory</a>
 }
 </pre>
 
@@ -202,7 +212,7 @@ See MemoryMessageQueue
 
 			
 				
-				<h3 id="NewDefaultMessagingFactory">func <a href="http://localhost:6060/src/build/DefaultMessagingFactory.go?s=554:612#L9">NewDefaultMessagingFactory</a>
+				<h3 id="NewDefaultMessagingFactory">func <a href="http://localhost:6060/src/build/DefaultMessagingFactory.go?s=560:618#L9">NewDefaultMessagingFactory</a>
 					<a class="permalink" href="index.html#NewDefaultMessagingFactory">&#xb6;</a>
 					
 					
@@ -220,7 +230,7 @@ NewDefaultMessagingFactory are create a new instance of the factory.
 		
 			
 			
-			<h2 id="IMessageQueueFactory">type <a href="http://localhost:6060/src/build/IMessageQueueFactory.go?s=128:341#L1">IMessageQueueFactory</a>
+			<h2 id="IMessageQueueFactory">type <a href="http://localhost:6060/src/build/IMessageQueueFactory.go?s=130:343#L1">IMessageQueueFactory</a>
 				<a class="permalink" href="index.html#IMessageQueueFactory">&#xb6;</a>
 				
 				
@@ -233,7 +243,7 @@ Creates message queue componens.
     <span class="comment">// Creates a message queue component and assigns its name.</span>
     <span class="comment">// Parameters:</span>
     <span class="comment">//   - name: a name of the created message queue.</span>
-    CreateQueue(name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-go/queues/">queues</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-go/queues/#IMessageQueue">IMessageQueue</a>
+    CreateQueue(name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-gox/queues/">queues</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-gox/queues/#IMessageQueue">IMessageQueue</a>
 }</pre>
 
 			
@@ -250,7 +260,7 @@ Creates message queue componens.
 		
 			
 			
-			<h2 id="MemoryMessageQueueFactory">type <a href="http://localhost:6060/src/build/MemoryMessageQueueFactory.go?s=505:622#L5">MemoryMessageQueueFactory</a>
+			<h2 id="MemoryMessageQueueFactory">type <a href="http://localhost:6060/src/build/MemoryMessageQueueFactory.go?s=387:449#L5">MemoryMessageQueueFactory</a>
 				<a class="permalink" href="index.html#MemoryMessageQueueFactory">&#xb6;</a>
 				
 				
@@ -265,8 +275,7 @@ See MemoryMemoryMessageQueue
 </p>
 
 			<pre>type MemoryMessageQueueFactory struct {
-    <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/build/">build</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-go/build/#Factory">Factory</a>
-    <span class="comment">// contains filtered or unexported fields</span>
+    <a href="index.html#MessageQueueFactory">MessageQueueFactory</a>
 }
 </pre>
 
@@ -280,7 +289,7 @@ See MemoryMemoryMessageQueue
 
 			
 				
-				<h3 id="NewMemoryMessageQueueFactory">func <a href="http://localhost:6060/src/build/MemoryMessageQueueFactory.go?s=705:767#L12">NewMemoryMessageQueueFactory</a>
+				<h3 id="NewMemoryMessageQueueFactory">func <a href="http://localhost:6060/src/build/MemoryMessageQueueFactory.go?s=532:594#L10">NewMemoryMessageQueueFactory</a>
 					<a class="permalink" href="index.html#NewMemoryMessageQueueFactory">&#xb6;</a>
 					
 					
@@ -296,24 +305,12 @@ NewMemoryMessageQueueFactory method are create a new instance of the factory.
 
 			
 				
-				<h3 id="MemoryMessageQueueFactory.Configure">func (*MemoryMessageQueueFactory) <a href="http://localhost:6060/src/build/MemoryMessageQueueFactory.go?s=1131:1204#L29">Configure</a>
-					<a class="permalink" href="index.html#MemoryMessageQueueFactory.Configure">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (c *<a href="index.html#MemoryMessageQueueFactory">MemoryMessageQueueFactory</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-go/config/">cconf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>)</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="MemoryMessageQueueFactory.CreateQueue">func (*MemoryMessageQueueFactory) <a href="http://localhost:6060/src/build/MemoryMessageQueueFactory.go?s=1467:1548#L41">CreateQueue</a>
+				<h3 id="MemoryMessageQueueFactory.CreateQueue">func (*MemoryMessageQueueFactory) <a href="http://localhost:6060/src/build/MemoryMessageQueueFactory.go?s=1147:1249#L33">CreateQueue</a>
 					<a class="permalink" href="index.html#MemoryMessageQueueFactory.CreateQueue">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#MemoryMessageQueueFactory">MemoryMessageQueueFactory</a>) CreateQueue(name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-go/queues/">queues</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-go/queues/#IMessageQueue">IMessageQueue</a></pre>
+				<pre>func (c *<a href="index.html#MemoryMessageQueueFactory">MemoryMessageQueueFactory</a>) CreateQueue(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-gox/queues/">queues</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-messaging-gox/queues/#IMessageQueue">IMessageQueue</a></pre>
 				<p>
 Creates a message queue component and assigns its name.
 </p>
@@ -327,13 +324,74 @@ Parameters:
 				
 				
 			
+		
+			
+			
+			<h2 id="MessageQueueFactory">type <a href="http://localhost:6060/src/build/MessageQueueFactory.go?s=428:539#L6">MessageQueueFactory</a>
+				<a class="permalink" href="index.html#MessageQueueFactory">&#xb6;</a>
 				
-				<h3 id="MemoryMessageQueueFactory.SetReferences">func (*MemoryMessageQueueFactory) <a href="http://localhost:6060/src/build/MemoryMessageQueueFactory.go?s=1229:1307#L33">SetReferences</a>
-					<a class="permalink" href="index.html#MemoryMessageQueueFactory.SetReferences">&#xb6;</a>
+				
+			</h2>
+			<p>
+MessageQueueFactory are creates MessageQueue components by their descriptors.
+Name of created message queue is taken from its descriptor.
+</p>
+<p>
+See Factory
+See MessageQueue
+</p>
+
+			<pre>type MessageQueueFactory struct {
+    <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/build/">build</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/build/#Factory">Factory</a>
+<span id="MessageQueueFactory.Config"></span>    Config     *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">cconf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>
+<span id="MessageQueueFactory.References"></span>    References <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">cref</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="InheritMessageQueueFactory">func <a href="http://localhost:6060/src/build/MessageQueueFactory.go?s=613:667#L13">InheritMessageQueueFactory</a>
+					<a class="permalink" href="index.html#InheritMessageQueueFactory">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#MemoryMessageQueueFactory">MemoryMessageQueueFactory</a>) SetReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-go/refer/">cref</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-go/refer/#IReferences">IReferences</a>)</pre>
+				<pre>func InheritMessageQueueFactory() *<a href="index.html#MessageQueueFactory">MessageQueueFactory</a></pre>
+				<p>
+NewMessageQueueFactory method creates a new instance of the factory.
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="MessageQueueFactory.Configure">func (*MessageQueueFactory) <a href="http://localhost:6060/src/build/MessageQueueFactory.go?s=746:834#L20">Configure</a>
+					<a class="permalink" href="index.html#MessageQueueFactory.Configure">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessageQueueFactory">MessageQueueFactory</a>) Configure(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">cconf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="MessageQueueFactory.SetReferences">func (*MessageQueueFactory) <a href="http://localhost:6060/src/build/MessageQueueFactory.go?s=859:952#L24">SetReferences</a>
+					<a class="permalink" href="index.html#MessageQueueFactory.SetReferences">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MessageQueueFactory">MessageQueueFactory</a>) SetReferences(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">cref</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>)</pre>
 				
 				
 				
@@ -351,13 +409,13 @@ Parameters:
 
 
 <div id="footer">
-Build version go1.13.15.<br>
+Build version go1.18.5.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,
 and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
-<a href="http://localhost:6060/doc/tos.html">Terms of Service</a> |
-<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
 </div>
 
 </div><!-- .container -->
