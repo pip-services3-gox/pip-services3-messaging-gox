@@ -2,6 +2,7 @@ package test_queues
 
 import (
 	"context"
+	"sync"
 	"testing"
 	"time"
 
@@ -136,14 +137,14 @@ func (c *MessageQueueFixture) TestOnMessage(t *testing.T) {
 	receiver := TestMsgReceiver{}
 	c.queue.BeginListen(context.TODO(), "", &receiver)
 
-	time.Sleep(1000 * time.Millisecond)
+	time.Sleep(500 * time.Millisecond)
 
 	sndErr := c.queue.Send(context.TODO(), "", envelope1)
 	assert.Nil(t, sndErr)
 
-	time.Sleep(1000 * time.Millisecond)
+	time.Sleep(500 * time.Millisecond)
 
-	envelope2 := receiver.Message
+	envelope2 := receiver.GetMessage()
 	assert.NotNil(t, envelope2)
 	assert.Equal(t, envelope1.MessageType, envelope2.MessageType)
 	assert.Equal(t, envelope1.Message, envelope2.Message)
@@ -153,10 +154,19 @@ func (c *MessageQueueFixture) TestOnMessage(t *testing.T) {
 }
 
 type TestMsgReceiver struct {
-	Message *queues.MessageEnvelope
+	message *queues.MessageEnvelope
+	lock    sync.Mutex
+}
+
+func (c *TestMsgReceiver) GetMessage() queues.MessageEnvelope {
+	c.lock.Lock()
+	defer c.lock.Unlock()
+	return *c.message
 }
 
 func (c *TestMsgReceiver) ReceiveMessage(ctx context.Context, message *queues.MessageEnvelope, queue queues.IMessageQueue) (err error) {
-	c.Message = message
+	c.lock.Lock()
+	c.message = message
+	c.lock.Unlock()
 	return nil
 }
