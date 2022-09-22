@@ -12,13 +12,13 @@ import (
 // See Factory
 // See MemoryMessageQueue
 type DefaultMessagingFactory struct {
-	cbuild.Factory
+	*cbuild.Factory
 }
 
 // NewDefaultMessagingFactory are create a new instance of the factory.
 func NewDefaultMessagingFactory() *DefaultMessagingFactory {
 	c := DefaultMessagingFactory{}
-	c.Factory = *cbuild.NewFactory()
+	c.Factory = cbuild.NewFactory()
 
 	memoryQueueDescriptor := cref.NewDescriptor("pip-services", "message-queue", "memory", "*", "1.0")
 	memoryQueueFactoryDescriptor := cref.NewDescriptor("pip-services", "queue-factory", "memory", "*", "1.0")

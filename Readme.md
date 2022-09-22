@@ -6,16 +6,16 @@ The Messaging module contains a set of interfaces and classes for working with m
 
 The module contains the following packages:
 
-- [**Build**](https://godoc.org/github.com/pip-services3-gox/pip-services3-messaging-go/build) - in-memory message queue factory
-- [**Queues**](https://godoc.org/github.com/pip-services3-gox/pip-services3-messaging-go/queues) - contains interfaces for working with message queues, subscriptions for receiving messages from the queue, and an in-memory message queue implementation.
+- [**Build**](https://godoc.org/github.com/pip-services3-gox/pip-services3-messaging-gox/build) - in-memory message queue factory
+- [**Queues**](https://godoc.org/github.com/pip-services3-gox/pip-services3-messaging-gox/queues) - contains interfaces for working with message queues, subscriptions for receiving messages from the queue, and an in-memory message queue implementation.
 
 <a name="links"></a> Quick links:
 
-* [Configuration](https://www.pipservices.org/recipies/configuration)
+* [Configuration](http://docs.pipservices.org/conceptual/configuration/component_configuration/)
 * [API Reference](https://godoc.org/github.com/pip-services3-gox/pip-services3-messaging-go/)
 * [Change Log](CHANGELOG.md)
-* [Get Help](https://www.pipservices.org/community/help)
-* [Contribute](https://www.pipservices.org/community/contribute)
+* [Get Help](http://docs.pipservices.org/get_help/)
+* [Contribute](http://docs.pipservices.org/contribute/)
 
 ## Use
 

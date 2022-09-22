@@ -14,19 +14,21 @@ import (
 //	References:
 //		- *:logger:*:*:1.0           (optional)  ILogger components to pass log messages
 //		- *:counters:*:*:1.0         (optional)  ICounters components to pass collected measurements
+//
 //	see MessageQueue
 //	see MessagingCapabilities
+//
 //	Example:
 //		queue := NewMessageQueue("myqueue");
 //		queue.Send("123", NewMessageEnvelop("", "mymessage", "ABC"));
-//		message, err := queue.Receive("123")
+//		message, err := queue.Receive(contex.Backgroudn(), "123", 10000*time.Milliseconds)
 //		if (message != nil) {
 //			...
-//			queue.Complete("123", message);
+//			queue.Complete(ctx, message);
 //		}
 type MemoryMessageQueue struct {
 	MessageQueue
-	messages          []MessageEnvelope
+	messages          []*MessageEnvelope
 	lockTokenSequence int
 	lockedMessages    map[int]*LockedMessage
 	opened            bool
@@ -45,7 +47,7 @@ func NewMemoryMessageQueue(name string) *MemoryMessageQueue {
 		&c, name, NewMessagingCapabilities(true, true, true, true, true, true, true, false, true),
 	)
 
-	c.messages = make([]MessageEnvelope, 0)
+	c.messages = make([]*MessageEnvelope, 0)
 	c.lockTokenSequence = 0
 	c.lockedMessages = make(map[int]*LockedMessage, 0)
 	c.opened = false
@@ -98,7 +100,7 @@ func (c *MemoryMessageQueue) Clear(ctx context.Context, correlationId string) (e
 	c.Lock.Lock()
 	defer c.Lock.Unlock()
 
-	c.messages = make([]MessageEnvelope, 0)
+	c.messages = make([]*MessageEnvelope, 0)
 	c.lockedMessages = make(map[int]*LockedMessage, 0)
 	atomic.StoreInt32(&c.cancel, 0)
 
@@ -126,7 +128,7 @@ func (c *MemoryMessageQueue) Send(ctx context.Context, correlationId string, env
 
 	// Add message to the queue
 	c.Lock.Lock()
-	c.messages = append(c.messages, *envelope)
+	c.messages = append(c.messages, envelope)
 	c.Lock.Unlock()
 
 	c.Counters.IncrementOne(ctx, "queue."+c.Name()+".sent_messages")
@@ -147,7 +149,7 @@ func (c *MemoryMessageQueue) Peek(ctx context.Context, correlationId string) (re
 	// Pick a message
 	c.Lock.Lock()
 	if len(c.messages) > 0 {
-		message = &c.messages[0]
+		message = c.messages[0]
 	}
 	c.Lock.Unlock()
 
@@ -174,9 +176,7 @@ func (c *MemoryMessageQueue) PeekBatch(ctx context.Context, correlationId string
 	c.Lock.Unlock()
 
 	messages := []*MessageEnvelope{}
-	for _, message := range batchMessages {
-		messages = append(messages, &message)
-	}
+	messages = append(messages, batchMessages...)
 
 	c.Logger.Trace(ctx, correlationId, "Peeked %d messages on %s", len(messages), c.Name())
 
@@ -204,7 +204,7 @@ func (c *MemoryMessageQueue) Receive(ctx context.Context, correlationId string, 
 		}
 
 		// Get message from the queue
-		message = &c.messages[0]
+		message = c.messages[0]
 		c.messages = c.messages[1:]
 
 		// Generate and set locked token
