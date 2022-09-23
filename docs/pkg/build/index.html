@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.18.5";</script>
+<script>var goVersion = "go1.18.6";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -183,7 +183,7 @@
 		
 			
 			
-			<h2 id="DefaultMessagingFactory">type <a href="http://localhost:6060/src/build/DefaultMessagingFactory.go?s=431:486#L4">DefaultMessagingFactory</a>
+			<h2 id="DefaultMessagingFactory">type <a href="http://localhost:6060/src/build/DefaultMessagingFactory.go?s=444:502#L4">DefaultMessagingFactory</a>
 				<a class="permalink" href="index.html#DefaultMessagingFactory">&#xb6;</a>
 				
 				
@@ -198,7 +198,7 @@ See MemoryMessageQueue
 </p>
 
 			<pre>type DefaultMessagingFactory struct {
-    <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/build/">cbuild</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/build/#Factory">Factory</a>
+    *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/build/">cbuild</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/build/#Factory">Factory</a>
 }
 </pre>
 
@@ -212,7 +212,7 @@ See MemoryMessageQueue
 
 			
 				
-				<h3 id="NewDefaultMessagingFactory">func <a href="http://localhost:6060/src/build/DefaultMessagingFactory.go?s=560:618#L9">NewDefaultMessagingFactory</a>
+				<h3 id="NewDefaultMessagingFactory">func <a href="http://localhost:6060/src/build/DefaultMessagingFactory.go?s=579:637#L9">NewDefaultMessagingFactory</a>
 					<a class="permalink" href="index.html#NewDefaultMessagingFactory">&#xb6;</a>
 					
 					
@@ -230,7 +230,7 @@ NewDefaultMessagingFactory are create a new instance of the factory.
 		
 			
 			
-			<h2 id="IMessageQueueFactory">type <a href="http://localhost:6060/src/build/IMessageQueueFactory.go?s=130:343#L1">IMessageQueueFactory</a>
+			<h2 id="IMessageQueueFactory">type <a href="http://localhost:6060/src/build/IMessageQueueFactory.go?s=137:355#L1">IMessageQueueFactory</a>
 				<a class="permalink" href="index.html#IMessageQueueFactory">&#xb6;</a>
 				
 				
@@ -260,7 +260,7 @@ Creates message queue componens.
 		
 			
 			
-			<h2 id="MemoryMessageQueueFactory">type <a href="http://localhost:6060/src/build/MemoryMessageQueueFactory.go?s=387:449#L5">MemoryMessageQueueFactory</a>
+			<h2 id="MemoryMessageQueueFactory">type <a href="http://localhost:6060/src/build/MemoryMessageQueueFactory.go?s=401:465#L5">MemoryMessageQueueFactory</a>
 				<a class="permalink" href="index.html#MemoryMessageQueueFactory">&#xb6;</a>
 				
 				
@@ -289,7 +289,7 @@ See MemoryMemoryMessageQueue
 
 			
 				
-				<h3 id="NewMemoryMessageQueueFactory">func <a href="http://localhost:6060/src/build/MemoryMessageQueueFactory.go?s=532:594#L10">NewMemoryMessageQueueFactory</a>
+				<h3 id="NewMemoryMessageQueueFactory">func <a href="http://localhost:6060/src/build/MemoryMessageQueueFactory.go?s=551:613#L10">NewMemoryMessageQueueFactory</a>
 					<a class="permalink" href="index.html#NewMemoryMessageQueueFactory">&#xb6;</a>
 					
 					
@@ -305,7 +305,7 @@ NewMemoryMessageQueueFactory method are create a new instance of the factory.
 
 			
 				
-				<h3 id="MemoryMessageQueueFactory.CreateQueue">func (*MemoryMessageQueueFactory) <a href="http://localhost:6060/src/build/MemoryMessageQueueFactory.go?s=1147:1249#L33">CreateQueue</a>
+				<h3 id="MemoryMessageQueueFactory.CreateQueue">func (*MemoryMessageQueueFactory) <a href="http://localhost:6060/src/build/MemoryMessageQueueFactory.go?s=1189:1291#L33">CreateQueue</a>
 					<a class="permalink" href="index.html#MemoryMessageQueueFactory.CreateQueue">&#xb6;</a>
 					
 					
@@ -327,7 +327,7 @@ Parameters:
 		
 			
 			
-			<h2 id="MessageQueueFactory">type <a href="http://localhost:6060/src/build/MessageQueueFactory.go?s=428:539#L6">MessageQueueFactory</a>
+			<h2 id="MessageQueueFactory">type <a href="http://localhost:6060/src/build/MessageQueueFactory.go?s=443:558#L6">MessageQueueFactory</a>
 				<a class="permalink" href="index.html#MessageQueueFactory">&#xb6;</a>
 				
 				
@@ -358,7 +358,7 @@ See MessageQueue
 
 			
 				
-				<h3 id="InheritMessageQueueFactory">func <a href="http://localhost:6060/src/build/MessageQueueFactory.go?s=613:667#L13">InheritMessageQueueFactory</a>
+				<h3 id="InheritMessageQueueFactory">func <a href="http://localhost:6060/src/build/MessageQueueFactory.go?s=635:689#L13">InheritMessageQueueFactory</a>
 					<a class="permalink" href="index.html#InheritMessageQueueFactory">&#xb6;</a>
 					
 					
@@ -374,7 +374,7 @@ NewMessageQueueFactory method creates a new instance of the factory.
 
 			
 				
-				<h3 id="MessageQueueFactory.Configure">func (*MessageQueueFactory) <a href="http://localhost:6060/src/build/MessageQueueFactory.go?s=746:834#L20">Configure</a>
+				<h3 id="MessageQueueFactory.Configure">func (*MessageQueueFactory) <a href="http://localhost:6060/src/build/MessageQueueFactory.go?s=775:863#L20">Configure</a>
 					<a class="permalink" href="index.html#MessageQueueFactory.Configure">&#xb6;</a>
 					
 					
@@ -386,7 +386,7 @@ NewMessageQueueFactory method creates a new instance of the factory.
 				
 			
 				
-				<h3 id="MessageQueueFactory.SetReferences">func (*MessageQueueFactory) <a href="http://localhost:6060/src/build/MessageQueueFactory.go?s=859:952#L24">SetReferences</a>
+				<h3 id="MessageQueueFactory.SetReferences">func (*MessageQueueFactory) <a href="http://localhost:6060/src/build/MessageQueueFactory.go?s=892:985#L24">SetReferences</a>
 					<a class="permalink" href="index.html#MessageQueueFactory.SetReferences">&#xb6;</a>
 					
 					
@@ -409,7 +409,7 @@ NewMessageQueueFactory method creates a new instance of the factory.
 
 
 <div id="footer">
-Build version go1.18.5.<br>
+Build version go1.18.6.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,
