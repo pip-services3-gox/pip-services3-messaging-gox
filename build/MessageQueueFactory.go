@@ -14,7 +14,7 @@ import (
 // See Factory
 // See MessageQueue
 type MessageQueueFactory struct {
-	build.Factory
+	*build.Factory
 	Config     *cconf.ConfigParams
 	References cref.IReferences
 }
@@ -22,7 +22,7 @@ type MessageQueueFactory struct {
 // NewMessageQueueFactory method creates a new instance of the factory.
 func InheritMessageQueueFactory() *MessageQueueFactory {
 	c := MessageQueueFactory{
-		Factory: *build.NewFactory(),
+		Factory: build.NewFactory(),
 	}
 	return &c
 }

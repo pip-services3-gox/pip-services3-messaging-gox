@@ -13,13 +13,13 @@ import (
 // See Factory
 // See MemoryMemoryMessageQueue
 type MemoryMessageQueueFactory struct {
-	MessageQueueFactory
+	*MessageQueueFactory
 }
 
 // NewMemoryMessageQueueFactory method are create a new instance of the factory.
 func NewMemoryMessageQueueFactory() *MemoryMessageQueueFactory {
 	c := MemoryMessageQueueFactory{
-		MessageQueueFactory: *InheritMessageQueueFactory(),
+		MessageQueueFactory: InheritMessageQueueFactory(),
 	}
 
 	memoryQueueDescriptor := cref.NewDescriptor("pip-services", "message-queue", "memory", "*", "1.0")

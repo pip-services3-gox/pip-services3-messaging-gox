@@ -20,7 +20,7 @@ import (
 //
 //	Example:
 //		queue := NewMessageQueue("myqueue");
-//		queue.Send("123", NewMessageEnvelop("", "mymessage", "ABC"));
+//		queue.Send(context.Background(), "123", NewMessageEnvelop("", "mymessage", "ABC"));
 //		message, err := queue.Receive(contex.Backgroudn(), "123", 10000*time.Milliseconds)
 //		if (message != nil) {
 //			...
