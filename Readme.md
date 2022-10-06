@@ -6,8 +6,8 @@ The Messaging module contains a set of interfaces and classes for working with m
 
 The module contains the following packages:
 
-- [**Build**](https://godoc.org/github.com/pip-services3-gox/pip-services3-messaging-gox/build) - in-memory message queue factory
-- [**Queues**](https://godoc.org/github.com/pip-services3-gox/pip-services3-messaging-gox/queues) - contains interfaces for working with message queues, subscriptions for receiving messages from the queue, and an in-memory message queue implementation.
+- **Build** - in-memory message queue factory
+- **Queues** - contains interfaces for working with message queues, subscriptions for receiving messages from the queue, and an in-memory message queue implementation.
 
 <a name="links"></a> Quick links:
 
